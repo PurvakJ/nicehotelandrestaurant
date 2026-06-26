@@ -1,0 +1,623 @@
+/* About.css */
+.about-page {
+  font-family: 'Georgia', serif;
+  color: #2c1810;
+  background: #f8f6f4;
+  padding: 40px 0 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========================= */
+/* HERO SECTION */
+/* ========================= */
+.about-hero {
+  text-align: center;
+  padding: 40px 0 50px;
+}
+
+.page-title {
+  font-size: 44px;
+  font-weight: 400;
+  color: #2c1810;
+  letter-spacing: 4px;
+  margin: 0 0 10px;
+}
+
+.page-subtitle {
+  font-size: 18px;
+  color: #8a7a6a;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin: 0 0 15px;
+}
+
+.hero-underline {
+  width: 80px;
+  height: 2px;
+  background: #2c1810;
+  margin: 0 auto;
+}
+
+/* ========================= */
+/* MAIN GRID */
+/* ========================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin: 40px 0 60px;
+}
+
+.about-image-wrapper {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(44, 24, 16, 0.10);
+}
+
+.about-image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.about-image-wrapper:hover .about-image {
+  transform: scale(1.02);
+}
+
+.image-badge {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #2c1810;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* ========================= */
+/* ABOUT CONTENT */
+/* ========================= */
+.about-content h2 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #2c1810;
+  letter-spacing: 2px;
+  margin: 0 0 20px;
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5a4a3a;
+  margin: 0 0 15px;
+}
+
+.about-description strong {
+  color: #2c1810;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.about-feature {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #f0ece8;
+  transition: all 0.3s ease;
+}
+
+.about-feature:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(44, 24, 16, 0.06);
+  border-color: #d5ccc4;
+}
+
+.feature-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.about-feature h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c1810;
+  margin: 0 0 2px;
+}
+
+.about-feature p {
+  font-size: 13px;
+  color: #8a7a6a;
+  margin: 0;
+}
+
+/* ========================= */
+/* STATS SECTION */
+/* ========================= */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 50px 0 60px;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #f0ece8;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+}
+
+.stat-number {
+  display: block;
+  font-size: 36px;
+  font-weight: 400;
+  color: #2c1810;
+  letter-spacing: 2px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 14px;
+  color: #8a7a6a;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+/* ========================= */
+/* SECTION TITLES */
+/* ========================= */
+.section-title {
+  font-size: 32px;
+  font-weight: 400;
+  color: #2c1810;
+  text-align: center;
+  letter-spacing: 3px;
+  margin: 0 0 10px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: #2c1810;
+  margin: 15px auto 0;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #8a7a6a;
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+/* ========================= */
+/* ROOM CATEGORIES */
+/* ========================= */
+.about-rooms-section {
+  margin: 60px 0;
+}
+
+.room-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.room-category-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #f0ece8;
+  transition: all 0.3s ease;
+}
+
+.room-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+}
+
+.category-image {
+  height: 120px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.executive-bg {
+  background: linear-gradient(135deg, #2c1810, #5a4a3a);
+}
+
+.deluxe-bg {
+  background: linear-gradient(135deg, #d5ccc4, #b8a898);
+}
+
+.category-badge {
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.deluxe-bg .category-badge {
+  color: #2c1810;
+}
+
+.room-category-card h3 {
+  font-size: 22px;
+  font-weight: 400;
+  color: #2c1810;
+  margin: 0 0 10px;
+  letter-spacing: 1px;
+}
+
+.room-category-card p {
+  color: #8a7a6a;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 15px;
+}
+
+.category-amenities {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+}
+
+.category-amenities li {
+  color: #5a4a3a;
+  font-size: 14px;
+  padding: 4px 0;
+  letter-spacing: 0.5px;
+}
+
+.category-price {
+  display: inline-block;
+  background: #f0ece8;
+  padding: 6px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #2c1810;
+  letter-spacing: 1px;
+}
+
+/* ========================= */
+/* BANQUET SECTION */
+/* ========================= */
+.about-banquet-section {
+  margin: 60px 0;
+}
+
+.banquet-details-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #f0ece8;
+}
+
+.banquet-info {
+  padding: 35px;
+}
+
+.banquet-info h3 {
+  font-size: 28px;
+  font-weight: 400;
+  color: #2c1810;
+  letter-spacing: 2px;
+  margin: 0 0 10px;
+}
+
+.banquet-capacity {
+  font-size: 16px;
+  color: #8a7a6a;
+  margin: 0 0 15px;
+  letter-spacing: 1px;
+}
+
+.banquet-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5a4a3a;
+  margin: 0 0 20px;
+}
+
+.banquet-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.banquet-feature {
+  background: #f8f6f4;
+  padding: 6px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2c1810;
+}
+
+.banquet-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.banquet-price-item {
+  background: #f8f6f4;
+  padding: 12px 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.banquet-price-item span {
+  font-size: 13px;
+  color: #8a7a6a;
+}
+
+.banquet-price-item strong {
+  font-size: 18px;
+  color: #2c1810;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.banquet-image-wrapper {
+  height: 100%;
+  min-height: 320px;
+}
+
+.banquet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================= */
+/* AMENITIES SECTION */
+/* ========================= */
+.about-amenities-section {
+  margin: 60px 0;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 25px;
+}
+
+.amenity-item {
+  background: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #f0ece8;
+  transition: all 0.3s ease;
+}
+
+.amenity-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+  border-color: #d5ccc4;
+}
+
+.amenity-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.amenity-item h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c1810;
+  margin: 0 0 5px;
+  letter-spacing: 0.5px;
+}
+
+.amenity-item p {
+  font-size: 13px;
+  color: #8a7a6a;
+  margin: 0;
+}
+
+/* ========================= */
+/* CTA SECTION */
+/* ========================= */
+.about-cta {
+  background: #2c1810;
+  padding: 50px 40px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.about-cta h2 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0 0 12px;
+}
+
+.about-cta p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-style: italic;
+  margin: 0 0 25px;
+  letter-spacing: 1px;
+}
+
+.about-cta-btn {
+  background: #ffffff;
+  color: #2c1810;
+  border: none;
+  padding: 14px 45px;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.about-cta-btn:hover {
+  background: #f0ece8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+@media (max-width: 1024px) {
+  .about-grid {
+    gap: 30px;
+  }
+  
+  .banquet-details-card {
+    grid-template-columns: 1fr;
+  }
+  
+  .banquet-image-wrapper {
+    min-height: 250px;
+  }
+  
+  .about-image {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    height: 280px;
+  }
+  
+  .page-title {
+    font-size: 32px;
+  }
+  
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .room-categories {
+    grid-template-columns: 1fr;
+  }
+  
+  .banquet-info {
+    padding: 25px;
+  }
+  
+  .banquet-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .section-title {
+    font-size: 26px;
+  }
+  
+  .about-cta {
+    padding: 35px 25px;
+  }
+  
+  .about-cta h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 26px;
+    letter-spacing: 2px;
+  }
+  
+  .page-subtitle {
+    font-size: 15px;
+  }
+  
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 20px 15px;
+  }
+  
+  .stat-number {
+    font-size: 28px;
+  }
+  
+  .amenities-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .amenity-item {
+    padding: 20px 15px;
+  }
+  
+  .amenity-icon {
+    font-size: 28px;
+  }
+  
+  .about-cta-btn {
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+  
+  .image-badge {
+    bottom: 12px;
+    right: 12px;
+    padding: 5px 14px;
+    font-size: 12px;
+  }
+}

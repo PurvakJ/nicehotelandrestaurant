@@ -1,0 +1,523 @@
+/* Footer.css */
+.footer {
+  background: #2c1810;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Georgia', serif;
+  padding-top: 60px;
+}
+
+/* ========================= */
+/* FOOTER CONTAINER */
+/* ========================= */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+  gap: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ========================= */
+/* FOOTER SECTIONS */
+/* ========================= */
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0 0 5px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================= */
+/* BRAND SECTION */
+/* ========================= */
+.brand-section {
+  gap: 20px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-brand-icon {
+  font-size: 32px;
+  transition: transform 0.3s ease;
+}
+
+.footer-brand:hover .footer-brand-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.footer-brand h3 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.brand-highlight {
+  font-weight: 500;
+  color: #ffffff;
+  position: relative;
+}
+
+.brand-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.footer-description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ========================= */
+/* SOCIAL LINKS */
+/* ========================= */
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================= */
+/* QUICK LINKS */
+/* ========================= */
+.links-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.links-section ul li {
+  margin: 0;
+}
+
+.links-section ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.links-section ul li a:hover {
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+.links-section ul li a::before {
+  content: '›';
+  color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.links-section ul li a:hover::before {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+/* ========================= */
+/* CONTACT SECTION */
+/* ========================= */
+.contact-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: 18px;
+  min-width: 28px;
+  margin-top: 2px;
+}
+
+.contact-item strong {
+  display: block;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.contact-item a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #ffffff;
+}
+
+/* ========================= */
+/* NEWSLETTER SECTION */
+/* ========================= */
+.newsletter-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.newsletter-input {
+  flex: 1;
+  min-width: 150px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.newsletter-btn {
+  padding: 10px 24px;
+  background: #ffffff;
+  color: #2c1810;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.newsletter-btn:hover {
+  background: #f0ece8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* ========================= */
+/* FOOTER BADGES */
+/* ========================= */
+.footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ========================= */
+/* FOOTER BOTTOM */
+/* ========================= */
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+}
+
+.footer-bottom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.copyright {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-bottom-links a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.footer-bottom-links a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-credit {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+@media (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .brand-section {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 40px;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .footer-section h4::after {
+    width: 40px;
+  }
+  
+  .footer-bottom-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .footer-bottom-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .footer-bottom-links a {
+    font-size: 12px;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-input {
+    width: 100%;
+  }
+  
+  .newsletter-btn {
+    width: 100%;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .footer-badges {
+    justify-content: center;
+  }
+  
+  .copyright {
+    font-size: 12px;
+  }
+  
+  .footer-credit {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    gap: 25px;
+  }
+  
+  .footer-brand h3 {
+    font-size: 20px;
+  }
+  
+  .footer-brand-icon {
+    font-size: 28px;
+  }
+  
+  .footer-description {
+    font-size: 13px;
+  }
+  
+  .footer-section h4 {
+    font-size: 16px;
+  }
+  
+  .contact-item p {
+    font-size: 13px;
+  }
+  
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .badge {
+    font-size: 11px;
+    padding: 3px 12px;
+  }
+  
+  .social-link {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+
+/* ========================= */
+/* DARK MODE SUPPORT */
+/* ========================= */
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: #1a0f0a;
+  }
+  
+  .footer-bottom {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ========================= */
+/* ACCESSIBILITY */
+/* ========================= */
+@media (prefers-reduced-motion: reduce) {
+  .footer-brand-icon,
+  .social-link,
+  .newsletter-btn,
+  .links-section ul li a {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .social-link:hover {
+    transform: none !important;
+  }
+  
+  .links-section ul li a:hover {
+    transform: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .footer {
+    background: #f8f6f4 !important;
+    color: #2c1810 !important;
+  }
+  
+  .footer-section h4 {
+    color: #2c1810 !important;
+  }
+  
+  .footer-section h4::after {
+    background: #2c1810 !important;
+  }
+  
+  .footer-description,
+  .contact-item p,
+  .contact-item a,
+  .links-section ul li a,
+  .newsletter-text {
+    color: #5a4a3a !important;
+  }
+}
