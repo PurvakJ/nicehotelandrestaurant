@@ -1,3 +1,4 @@
+// Home.jsx - Complete file with fix
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { getOffers, getReviews } from "../services/api";
@@ -26,8 +27,8 @@ function Home() {
     },
     {
       url: "/images/meeting1.png",
-      title: "Fine Dining",
-      subtitle: "Exquisite Culinary Experiences"
+      title: "Grand Events",
+      subtitle: "Celebrate in Elegance"
     },
   ];
 
@@ -45,7 +46,7 @@ function Home() {
     },
     {
       url: "/images/meeting 2.png",
-      title: "meeting area",
+      title: "Meeting Area",
       badge: "Popular"
     },
     {
@@ -81,10 +82,10 @@ function Home() {
       id: 2,
       name: "Deluxe Suite",
       category: "deluxe",
-      image: "/images/delux room.png",
+      image: "/images/Delux room.png",
       description: "Elegant deluxe suite with premium furnishings and stunning city views.",
       price: "$250/night",
-      amenities: ["King Bed", "Smart TV",  "Mini Bar", "Free WiFi"],
+      amenities: ["King Bed", "Smart TV", "Mini Bar", "Free WiFi"],
       badge: "Luxury Choice"
     },
   ];
@@ -164,14 +165,28 @@ function Home() {
             id: 1,
             title: "Summer Special",
             description: "Get 20% off on all room bookings. Limited time offer!",
-            discount: "20%",
+            discount: "20% OFF",
             status: "active"
           },
           {
             id: 2,
             title: "Wedding Package",
             description: "Book our grand ballroom for your special day and get complimentary decoration.",
-            discount: "15%",
+            discount: "15% OFF",
+            status: "active"
+          },
+          {
+            id: 3,
+            title: "Family Getaway",
+            description: "Special family package with complimentary breakfast and kids stay free.",
+            discount: "25% OFF",
+            status: "active"
+          },
+          {
+            id: 4,
+            title: "Corporate Retreat",
+            description: "Perfect for business meetings with conference room and catering included.",
+            discount: "30% OFF",
             status: "active"
           }
         ]);
@@ -229,6 +244,37 @@ function Home() {
     setGalleryIndex((prev) => (prev + 1) % galleryImages.length);
   };
 
+// Format discount display - FIXED for decimal values
+const formatDiscount = (discount) => {
+  if (!discount) return 'Special Offer';
+  
+  // Convert to string if it's a number
+  const discountStr = String(discount);
+  
+  // If it already has % or OFF, return as is
+  if (discountStr.includes('%') || discountStr.includes('OFF')) {
+    return discountStr;
+  }
+  
+  // Check if it's a decimal (0.1, 0.15, etc.)
+  const num = parseFloat(discountStr);
+  if (!isNaN(num)) {
+    // If it's less than 1, it's a decimal representing percentage
+    if (num < 1 && num > 0) {
+      // Convert decimal to percentage (0.1 -> 10%)
+      const percent = Math.round(num * 100);
+      return `${percent}% OFF`;
+    }
+    // If it's already a whole number, add % OFF
+    if (Number.isInteger(num)) {
+      return `${num}% OFF`;
+    }
+    return `${num}% OFF`;
+  }
+  
+  return discountStr;
+};
+
   return (
     <div className="hotel-home">
       {/* ========================= */}
@@ -285,11 +331,11 @@ function Home() {
       </section>
 
       {/* ========================= */}
-      {/* OFFERS SECTION */}
+      {/* EXCLUSIVE OFFERS SECTION */}
       {/* ========================= */}
       <section className="offers-section">
         <div className="container">
-          <h2 className="section-title offers-title">Exclusive Offers</h2>
+          <h2 className="section-title offers-title">✨ Exclusive Offers</h2>
           <p className="section-subtitle offers-subtitle">
             Special deals and packages for our valued guests
           </p>
@@ -309,18 +355,19 @@ function Home() {
             </div>
           ) : (
             <div className="offers-grid">
-              {activeOffers.slice(0, 4).map((offer) => (
-                <div key={offer.id} className="offer-card">
-                  <span className="offer-badge">Special</span>
-                  <span className="offer-tag">Limited Time</span>
-                  <h3 className="offer-title">{offer.title}</h3>
-                  <p className="offer-description">{offer.description}</p>
-                  <button 
-                    className="offer-btn"
-                    onClick={() => navigate("/rooms")}
-                  >
-                    Book Now
-                  </button>
+              {activeOffers.slice(0, 4).map((offer, index) => (
+                <div key={offer.id} className={`offer-card ${index === 0 ? 'featured' : ''}`}>
+                  {index === 0 && <div className="offer-featured-badge">🔥 Best Deal</div>}
+                  <div className="offer-discount-badge">
+                    {formatDiscount(offer.discount)}
+                  </div>
+                  <div className="offer-content">
+                    <h3 className="offer-title">{offer.title}</h3>
+                    <p className="offer-description">{offer.description}</p>
+                    <div className="offer-footer">
+                      <span className="offer-validity">✓ Limited Time</span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

@@ -1,3 +1,4 @@
+// Admin.jsx
 import { useEffect, useState } from "react";
 import { getAllData, updateStatus, sendApprovalEmail, addOffer, updateOffer, deleteOffer } from "../services/api";
 import "./Admin.css";
@@ -96,6 +97,40 @@ function Admin() {
     return true;
   });
 
+  // Get counts for stats
+  const getStats = () => {
+    const total = data.length;
+    const pending = data.filter(item => item.status === "Pending" || !item.status).length;
+    const approved = data.filter(item => item.status === "Approved").length;
+    const rejected = data.filter(item => item.status === "Rejected").length;
+    return { total, pending, approved, rejected };
+  };
+
+  const stats = getStats();
+
+  // Send email notification for status update
+  const sendStatusEmail = async (item, newStatus) => {
+    try {
+      const bookingType = item.type === "Room" ? item.roomName || "Room Booking" :
+                         item.type === "Hall" ? item.hallName || "Hall Booking" :
+                         "Contact Query";
+      
+      const customerName = item.name || "Guest";
+      
+      await sendApprovalEmail(
+        item.email,
+        customerName,
+        bookingType,
+        newStatus
+      );
+      
+      return true;
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return false;
+    }
+  };
+
   const handleStatusUpdate = async (item, newStatus) => {
     // Add item to updating set immediately
     setUpdatingItems(prev => new Set(prev).add(item.id));
@@ -111,32 +146,24 @@ function Admin() {
                        item.type === "Hall" ? "HallBookings" : 
                        "ContactQueries";
       
-      const bookingType = item.type === "Room" ? item.roomName || "Room Booking" :
-                         item.type === "Hall" ? item.hallName || "Hall Booking" :
-                         "Contact Query";
-
-      const customerName = item.name || "Guest";
-
       const result = await updateStatus({
         sheetName: sheetName,
         id: item.id,
         status: newStatus,
         email: item.email,
-        customerName: customerName,
-        bookingType: bookingType
+        customerName: item.name || "Guest",
+        bookingType: item.type === "Room" ? item.roomName || "Room Booking" :
+                     item.type === "Hall" ? item.hallName || "Hall Booking" :
+                     "Contact Query"
       });
 
       if (result.success) {
-        await sendApprovalEmail(
-          item.email,
-          customerName,
-          bookingType,
-          newStatus
-        );
-
+        // Send email notification
+        const emailSent = await sendStatusEmail(item, newStatus);
+        
         setNotification({ 
           type: "success", 
-          message: `${bookingType} ${newStatus.toLowerCase()} successfully! Email sent to ${item.email}`
+          message: `${item.type} ${newStatus.toLowerCase()} successfully! ${emailSent ? 'Email sent to customer.' : 'Email could not be sent.'}`
         });
         
         // Refresh data from server
@@ -290,6 +317,7 @@ function Admin() {
     return (
       <div className="login-page">
         <div className="login-container">
+          <div className="login-icon">🔐</div>
           <h1>Admin Access</h1>
           <p className="subtitle">Please sign in to continue</p>
           
@@ -356,6 +384,25 @@ function Admin() {
             </div>
           )}
           
+          {/* Stats Cards */}
+          <div className="admin-stats">
+            <div className="admin-stat-card total">
+              <span className="stat-number">{stats.total}</span>
+              <span className="stat-label">Total Bookings</span>
+            </div>
+            <div className="admin-stat-card pending">
+              <span className="stat-number">{stats.pending}</span>
+              <span className="stat-label">Pending</span>
+            </div>
+            <div className="admin-stat-card approved">
+              <span className="stat-number">{stats.approved}</span>
+              <span className="stat-label">Approved</span>
+            </div>
+            <div className="admin-stat-card rejected">
+              <span className="stat-number">{stats.rejected}</span>
+              <span className="stat-label">Rejected</span>
+            </div>
+          </div>
         </div>
 
         {/* Filters Section */}
@@ -417,13 +464,16 @@ function Admin() {
                     </span>
                   </div>
                   <p className="offer-description">{offer.description}</p>
-                  <p className="offer-discount">Discount: {formatDiscount(offer.discount)}</p>
+                  <div className="offer-discount-wrapper">
+                    <span className="offer-discount-label">Discount</span>
+                    <span className="offer-discount">{formatDiscount(offer.discount)}</span>
+                  </div>
                   <div className="offer-actions">
                     <button className="edit-btn" onClick={() => openEditOffer(offer)}>
-                      Edit
+                      ✎ Edit
                     </button>
                     <button className="delete-btn" onClick={() => handleDeleteOffer(offer.id)}>
-                      Delete
+                      ✕ Delete
                     </button>
                   </div>
                 </div>
@@ -479,6 +529,7 @@ function Admin() {
         {/* Bookings Section */}
         <div className="admin-section">
           <h2 className="section-title">All Bookings & Queries</h2>
+          <p className="section-subtitle">{filteredData.length} items found</p>
           
           {filteredData.length === 0 ? (
             <div className="empty-state">No bookings found matching your filters.</div>
@@ -525,13 +576,13 @@ function Admin() {
                             className="approve-btn"
                             onClick={() => handleStatusUpdate(item, "Approved")}
                           >
-                            ✓ Approve
+                            ✓ Approve & Send Email
                           </button>
                           <button 
                             className="reject-btn"
                             onClick={() => handleStatusUpdate(item, "Rejected")}
                           >
-                            ✕ Reject
+                            ✕ Reject & Send Email
                           </button>
                         </>
                       )}
@@ -564,7 +615,10 @@ function Admin() {
       {showOfferModal && (
         <div className="modal-overlay" onClick={() => setShowOfferModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{editingOffer ? "Edit Offer" : "Add New Offer"}</h2>
+            <div className="modal-header">
+              <h2>{editingOffer ? "✎ Edit Offer" : "➕ Add New Offer"}</h2>
+              <button className="modal-close-btn" onClick={() => setShowOfferModal(false)}>×</button>
+            </div>
             <form onSubmit={(e) => {
               e.preventDefault();
               editingOffer ? handleUpdateOffer() : handleAddOffer();
@@ -576,6 +630,7 @@ function Admin() {
                   value={offerForm.title}
                   onChange={(e) => setOfferForm({...offerForm, title: e.target.value})}
                   required
+                  placeholder="Enter offer title"
                 />
               </div>
               <div className="form-group">
@@ -584,6 +639,7 @@ function Admin() {
                   value={offerForm.description}
                   onChange={(e) => setOfferForm({...offerForm, description: e.target.value})}
                   required
+                  placeholder="Enter offer description"
                 />
               </div>
               <div className="form-group">
@@ -595,9 +651,7 @@ function Admin() {
                   placeholder="e.g., 20"
                   required
                 />
-                <small style={{color: '#8a7a6a', fontSize: '12px', marginTop: '4px', display: 'block'}}>
-                  Enter percentage (e.g., 20 for 20%)
-                </small>
+                <small className="form-hint">Enter percentage (e.g., 20 for 20%)</small>
               </div>
               <div className="form-group">
                 <label>Status</label>

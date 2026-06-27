@@ -17,6 +17,8 @@ function Venue() {
 
   const [selectedHall, setSelectedHall] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState('details');
+  const [activeImage, setActiveImage] = useState(0);
 
   const halls = [
     {
@@ -27,15 +29,9 @@ function Venue() {
         "/images/kitty1.png",
         "/images/kitty2.png",
       ],
-      description: "Elegant party hall with sophisticated decor. Perfect for  kitty parties, and social gatherings.",
+      description: "Elegant party hall with sophisticated decor. Perfect for kitty parties, and social gatherings.",
       fullDescription: "Our Party Hall is the epitome of elegance and comfort. Featuring tasteful decor, comfortable seating, and a warm ambiance, this venue creates the perfect atmosphere for memorable celebrations. The hall can accommodate up to 100 guests and comes equipped with a professional sound system, elegant lighting, and a dedicated stage. Whether you're planning a wedding reception, a kitty party, a birthday celebration, or a social gathering, our dedicated events team will ensure every detail is perfect.",
       features: ["Comfortable Seating", "Sound System", "Elegant Lighting", "Stage", "Dance Floor", "Decorative Setup", "Changing Rooms", "Parking Available"],
-      pricing: {
-        "Kitty Party": "₹15,000",
-        "Birthday Party": "₹20,000",
-        "Social Gathering": "₹25,000",
-        "Custom Package": "Contact Us"
-      },
       badge: "Most Popular",
       category: "premium",
       area: "500 sqm",
@@ -52,11 +48,6 @@ function Venue() {
       description: "Comfortable meeting room with essential amenities for small gatherings, training, and discussions.",
       fullDescription: "Our Meeting Room offers a quiet and comfortable environment for small groups. With ergonomic seating, natural light, and a professional ambiance, it's perfect for board meetings, training sessions, workshops, or intimate gatherings. The room is equipped with a sound system, whiteboard, and basic audio, but no projector or screen—keeping it simple and distraction-free. Our team will arrange the seating to suit your needs.",
       features: ["Comfortable Seating", "Sound System", "Natural Light", "AC", "WiFi", "Refreshments on Request"],
-      pricing: {
-        "Half Day (4 hrs)": "₹8,000",
-        "Full Day (8 hrs)": "₹15,000",
-        "Monthly Package": "Contact Us"
-      },
       badge: "Business Choice",
       category: "standard",
       area: "200 sqm",
@@ -75,9 +66,6 @@ function Venue() {
       description: "Beautiful outdoor venue with scenic views - Opening Soon!",
       fullDescription: "Coming Soon! Our Garden Terrace will be a beautiful outdoor venue perfect for intimate gatherings and romantic celebrations. Surrounded by lush greenery and offering breathtaking views, this venue will create a magical atmosphere for outdoor events. Stay tuned for the grand opening!",
       features: ["Outdoor Setting", "Scenic Views", "Garden Lighting", "Weather Protection", "Bar Service", "Coming Soon"],
-      pricing: {
-        "Coming Soon": "Contact Us"
-      },
       badge: "Coming Soon",
       category: "coming-soon",
       area: "Coming Soon",
@@ -92,8 +80,10 @@ function Venue() {
       return;
     }
     setSelectedHall(hallName);
+    setModalMode('booking');
     setForm({...form, hallName: hallName});
     setIsModalOpen(true);
+    setActiveImage(0);
     document.body.style.overflow = 'hidden';
   };
 
@@ -103,7 +93,9 @@ function Venue() {
       return;
     }
     setSelectedHall(hallName);
+    setModalMode('details');
     setIsModalOpen(true);
+    setActiveImage(0);
     document.body.style.overflow = 'hidden';
   };
 
@@ -132,6 +124,22 @@ function Venue() {
   const handleCloseModal = (e) => {
     if (e.target.className === 'modal-overlay') {
       closeModal();
+    }
+  };
+
+  const getHall = (name) => halls.find(h => h.name === name);
+
+  const nextImage = () => {
+    const hall = getHall(selectedHall);
+    if (hall) {
+      setActiveImage(prev => prev < hall.images.length - 1 ? prev + 1 : 0);
+    }
+  };
+
+  const prevImage = () => {
+    const hall = getHall(selectedHall);
+    if (hall) {
+      setActiveImage(prev => prev > 0 ? prev - 1 : hall.images.length - 1);
     }
   };
 
@@ -194,6 +202,7 @@ function Venue() {
                   {hall.area !== "Coming Soon" && (
                     <span className="hall-area">📐 {hall.area}</span>
                   )}
+                  <span className="hall-floor">📍 {hall.floor}</span>
                 </div>
                 <p className="hall-description">{hall.description}</p>
                 
@@ -207,20 +216,6 @@ function Venue() {
                 </div>
                 
                 <div className="hall-footer">
-                  {hall.category !== "coming-soon" && (
-                    <div className="hall-pricing">
-                      <span className="price-from">From</span>
-                      <span className="hall-price">
-                        {Object.values(hall.pricing)[0]}
-                      </span>
-                    </div>
-                  )}
-                  {hall.category === "coming-soon" && (
-                    <div className="hall-pricing">
-                      <span className="price-from">Status</span>
-                      <span className="hall-price coming-soon-text">Coming Soon</span>
-                    </div>
-                  )}
                   <div className="hall-actions">
                     <button 
                       className="view-details-btn"
@@ -272,174 +267,190 @@ function Venue() {
         </div>
       </div>
 
-      {/* Modal/Dialog Box */}
+      {/* Modal */}
       {isModalOpen && selectedHall && selectedHall !== "Garden Terrace" && (
         <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content">
+          <div className={`modal-content ${modalMode}`}>
             <button className="modal-close" onClick={closeModal}>×</button>
             
             <div className="modal-body">
-              <div className="modal-image-section">
-                <div className="modal-main-image">
-                  {halls.find(h => h.name === selectedHall) && (
-                    <img src={halls.find(h => h.name === selectedHall).image} alt={selectedHall} />
-                  )}
-                  <span className={`modal-venue-badge ${halls.find(h => h.name === selectedHall)?.category}`}>
-                    {halls.find(h => h.name === selectedHall)?.category}
-                  </span>
-                  {halls.find(h => h.name === selectedHall)?.badge && (
-                    <span className="modal-venue-badge-tag">{halls.find(h => h.name === selectedHall)?.badge}</span>
-                  )}
-                  <div className="modal-rating-badge">
-                    ⭐ {halls.find(h => h.name === selectedHall)?.rating}
-                  </div>
-                </div>
-                <div className="modal-thumbnails">
-                  {halls.find(h => h.name === selectedHall)?.images.map((img, idx) => (
+              {/* Image Slider - FULL WIDTH at TOP */}
+              {modalMode === 'details' && (
+                <div className="modal-image-slider">
+                  <div className="slider-main">
                     <img 
-                      key={idx} 
-                      src={img} 
-                      alt={`${selectedHall} view ${idx + 1}`}
-                      className="thumbnail"
+                      src={getHall(selectedHall)?.images[activeImage] || getHall(selectedHall)?.image} 
+                      alt={selectedHall} 
                     />
-                  ))}
-                </div>
-              </div>
-
-              <div className="modal-details">
-                <h2>{selectedHall}</h2>
-                
-                <div className="modal-venue-meta">
-                  <span>👥 Capacity: {halls.find(h => h.name === selectedHall)?.capacity}</span>
-                  {halls.find(h => h.name === selectedHall)?.area !== "Coming Soon" && (
-                    <span>📐 {halls.find(h => h.name === selectedHall)?.area}</span>
-                  )}
-                  <span>📍 {halls.find(h => h.name === selectedHall)?.floor}</span>
-                </div>
-
-                <p className="modal-full-description">
-                  {halls.find(h => h.name === selectedHall)?.fullDescription}
-                </p>
-
-                <div className="modal-features">
-                  <h4>All Features & Amenities</h4>
-                  <div className="features-grid-modal">
-                    {halls.find(h => h.name === selectedHall)?.features.map((feature, idx) => (
-                      <span key={idx} className="modal-feature-tag">
-                        ✅ {feature}
+                    <div className="slider-overlay">
+                      <span className={`slider-badge ${getHall(selectedHall)?.category}`}>
+                        {getHall(selectedHall)?.category}
                       </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="modal-pricing-section">
-                  <h4>Pricing Packages</h4>
-                  <div className="pricing-grid-modal">
-                    {halls.find(h => h.name === selectedHall) && 
-                      Object.entries(halls.find(h => h.name === selectedHall).pricing).map(([key, value]) => (
-                        <div key={key} className="pricing-item">
-                          <span className="pricing-label">{key}</span>
-                          <span className="pricing-value">{value}</span>
+                      {getHall(selectedHall)?.badge && (
+                        <span className="slider-badge-tag">{getHall(selectedHall)?.badge}</span>
+                      )}
+                      <span className="slider-rating">⭐ {getHall(selectedHall)?.rating}</span>
+                    </div>
+                    {getHall(selectedHall)?.images.length > 1 && (
+                      <>
+                        <button className="slider-nav prev" onClick={prevImage}>‹</button>
+                        <button className="slider-nav next" onClick={nextImage}>›</button>
+                        <div className="slider-counter">
+                          {activeImage + 1} / {getHall(selectedHall)?.images.length}
                         </div>
-                      ))
-                    }
+                      </>
+                    )}
                   </div>
+                  {getHall(selectedHall)?.images.length > 1 && (
+                    <div className="slider-thumbnails">
+                      {getHall(selectedHall)?.images.map((img, idx) => (
+                        <img 
+                          key={idx} 
+                          src={img} 
+                          alt={`${selectedHall} view ${idx + 1}`}
+                          className={`thumb ${idx === activeImage ? 'active' : ''}`}
+                          onClick={() => setActiveImage(idx)}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
+              )}
 
-                {/* Booking Form in Modal */}
-                <form onSubmit={submit} className="modal-booking-form">
-                  <h4>Book This Venue</h4>
+              {/* ALL DATA - Below the image */}
+              {modalMode === 'details' ? (
+                <div className="modal-details-view">
+                  <h2 className="modal-title">{selectedHall}</h2>
                   
-                  <div className="modal-form-group">
-                    <label>Event Type</label>
-                    <select
-                      value={form.eventType}
-                      onChange={(e) => setForm({...form, eventType: e.target.value})}
-                      className="modal-form-select"
-                      required
-                    >
-                      <option value="Wedding">Wedding</option>
-                      <option value="Kitty Party">Kitty Party</option>
-                      <option value="Birthday Party">Birthday Party</option>
-                      <option value="Social Gathering">Social Gathering</option>
-                      <option value="Corporate Event">Corporate Event</option>
-                      <option value="Meeting">Meeting / Training</option>
-                      <option value="Other">Other</option>
-                    </select>
+                  <div className="modal-meta">
+                    <span>👥 Capacity: {getHall(selectedHall)?.capacity}</span>
+                    {getHall(selectedHall)?.area !== "Coming Soon" && (
+                      <span>📐 {getHall(selectedHall)?.area}</span>
+                    )}
+                    <span>📍 {getHall(selectedHall)?.floor}</span>
                   </div>
 
-                  <div className="modal-form-row">
-                    <div className="modal-form-group">
-                      <label>Event Date</label>
-                      <input
-                        type="date"
-                        value={form.date}
-                        onChange={(e) => setForm({...form, date: e.target.value})}
-                        required
-                      />
-                    </div>
-                    <div className="modal-form-group">
-                      <label>Expected Guests</label>
-                      <input
-                        type="number"
-                        placeholder="Number of guests"
-                        value={form.guestCount}
-                        onChange={(e) => setForm({...form, guestCount: e.target.value})}
-                        required
-                      />
+                  <p className="modal-description">
+                    {getHall(selectedHall)?.fullDescription}
+                  </p>
+
+                  <div className="modal-features-section">
+                    <h4>✨ Features & Amenities</h4>
+                    <div className="modal-features-grid">
+                      {getHall(selectedHall)?.features.map((feature, idx) => (
+                        <span key={idx} className="modal-feature-item">
+                          ✓ {feature}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="modal-form-row">
-                    <div className="modal-form-group">
-                      <label>Full Name</label>
-                      <input
-                        type="text"
-                        placeholder="Enter your name"
-                        value={form.name}
-                        onChange={(e) => setForm({...form, name: e.target.value})}
-                        required
-                      />
-                    </div>
-                    <div className="modal-form-group">
-                      <label>Email</label>
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={form.email}
-                        onChange={(e) => setForm({...form, email: e.target.value})}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="modal-form-group">
-                    <label>Phone Number</label>
-                    <input
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      value={form.phone}
-                      onChange={(e) => setForm({...form, phone: e.target.value})}
-                      required
-                    />
-                  </div>
-
-                  <div className="modal-form-group">
-                    <label>Special Requests</label>
-                    <textarea
-                      placeholder="Any special requirements or preferences..."
-                      value={form.specialRequests}
-                      onChange={(e) => setForm({...form, specialRequests: e.target.value})}
-                      className="modal-textarea"
-                      rows="3"
-                    />
-                  </div>
-
-                  <button type="submit" className="modal-submit-btn">
-                    Book Venue
+                  <button 
+                    className="modal-book-now-btn"
+                    onClick={() => {
+                      setModalMode('booking');
+                      setForm({...form, hallName: selectedHall});
+                    }}
+                  >
+                    📅 Book This Venue
                   </button>
-                </form>
-              </div>
+                </div>
+              ) : (
+                // BOOKING VIEW - Form only, no image
+                <div className="modal-booking-view">
+                  <h2 className="modal-title">Book {selectedHall}</h2>
+                  <p className="booking-subtitle">Fill in the details below to reserve your spot</p>
+                  
+                  <form onSubmit={submit} className="booking-form">
+                    <div className="form-group">
+                      <label>Event Type</label>
+                      <select
+                        value={form.eventType}
+                        onChange={(e) => setForm({...form, eventType: e.target.value})}
+                        required
+                      >
+                        <option value="Wedding">💒 Wedding</option>
+                        <option value="Kitty Party">🎀 Kitty Party</option>
+                        <option value="Birthday Party">🎂 Birthday Party</option>
+                        <option value="Social Gathering">🎪 Social Gathering</option>
+                        <option value="Corporate Event">💼 Corporate Event</option>
+                        <option value="Meeting">📊 Meeting / Training</option>
+                        <option value="Other">📌 Other</option>
+                      </select>
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>Event Date</label>
+                        <input
+                          type="date"
+                          value={form.date}
+                          onChange={(e) => setForm({...form, date: e.target.value})}
+                          required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Expected Guests</label>
+                        <input
+                          type="number"
+                          placeholder="Number of guests"
+                          value={form.guestCount}
+                          onChange={(e) => setForm({...form, guestCount: e.target.value})}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>Full Name</label>
+                        <input
+                          type="text"
+                          placeholder="Enter your name"
+                          value={form.name}
+                          onChange={(e) => setForm({...form, name: e.target.value})}
+                          required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Email</label>
+                        <input
+                          type="email"
+                          placeholder="Enter your email"
+                          value={form.email}
+                          onChange={(e) => setForm({...form, email: e.target.value})}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label>Phone Number</label>
+                      <input
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        value={form.phone}
+                        onChange={(e) => setForm({...form, phone: e.target.value})}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label>Special Requests</label>
+                      <textarea
+                        placeholder="Any special requirements or preferences..."
+                        value={form.specialRequests}
+                        onChange={(e) => setForm({...form, specialRequests: e.target.value})}
+                        rows="3"
+                      />
+                    </div>
+
+                    <button type="submit" className="submit-btn">
+                      Confirm Booking
+                    </button>
+                  </form>
+                </div>
+              )}
             </div>
           </div>
         </div>

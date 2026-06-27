@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { contactQuery, submitReview as submitReviewApi } from "../services/api";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import "./Contact.css";
 
 function Contact() {
@@ -19,6 +20,16 @@ function Contact() {
   
   const [activeTab, setActiveTab] = useState("contact");
   const [submitting, setSubmitting] = useState(false);
+
+  // Business information (same as App.js)
+  const businessInfo = {
+    phone1: '9216400005',
+    email: 'deepaksingla239@gmail.com',
+    instagram: 'https://www.instagram.com/bholasingh_sons_tyre/',
+    facebook: 'https://www.facebook.com/p/BHOLA-SINGH-SONS-61565127653219/',
+    whatsapp: 'https://wa.me/919216400005',
+    address: 'Near chugli ghar, Mansa 151505',
+  };
 
   // Contact form handler
   const handleContactSubmit = async (e) => {
@@ -79,67 +90,42 @@ function Contact() {
     }
   };
 
-  // Social Media Data with original colors
+  // Social Media Data with React Icons
   const socialLinks = [
     {
       name: "Facebook",
-      icon: "📘",
-      url: "https://facebook.com/nicehotel",
+      icon: <FaFacebookF />,
+      url: businessInfo.facebook,
       color: "#1877F2",
-      hoverColor: "#1877F2"
+      className: "facebook"
     },
     {
       name: "Instagram",
-      icon: "📸",
-      url: "https://instagram.com/nicehotel",
+      icon: <FaInstagram />,
+      url: businessInfo.instagram,
       color: "#E4405F",
-      hoverColor: "#E4405F"
-    },
-    {
-      name: "Twitter",
-      icon: "🐦",
-      url: "https://twitter.com/nicehotel",
-      color: "#1DA1F2",
-      hoverColor: "#1DA1F2"
-    },
-    {
-      name: "YouTube",
-      icon: "▶️",
-      url: "https://youtube.com/nicehotel",
-      color: "#FF0000",
-      hoverColor: "#FF0000"
-    },
-    {
-      name: "TripAdvisor",
-      icon: "⭐",
-      url: "https://tripadvisor.com/nicehotel",
-      color: "#34E0A1",
-      hoverColor: "#34E0A1"
+      className: "instagram"
     },
     {
       name: "WhatsApp",
-      icon: "💬",
-      url: "https://wa.me/919876543210",
+      icon: <FaWhatsapp />,
+      url: businessInfo.whatsapp,
       color: "#25D366",
-      hoverColor: "#25D366"
+      className: "whatsapp"
     }
   ];
 
   // Location data
   const location = {
-    address: "Near chugli ghar Mansa, 151505",
+    address: businessInfo.address,
     city: "Mansa",
     state: "Punjab",
     country: "India",
     pincode: "151505",
-    coordinates: {
-      lat: "19.0760",
-      lng: "72.8777"
-    },
     nearby: [
-      "📍 5 mins from Busstand",
-      "📍 2 mins from Railway Station",
-      "📍 Walking distance to Market",
+      "5 mins from Bus Stand",
+      "2 mins from Railway Station",
+      "Walking distance to Market",
     ]
   };
 
@@ -166,113 +152,7 @@ function Contact() {
         </div>
 
         <div className="contact-wrapper">
-          {/* Contact Info - Updated with Location and Social */}
-          <div className="contact-info">
-            <h3>Get in Touch</h3>
-            <p>We're here to help and answer any questions you might have.</p>
-            
-            {/* Contact Details */}
-            <div className="contact-details">
-              <div className="contact-detail">
-                <span className="icon">📍</span>
-                <div>
-                  <strong>Address</strong>
-                  <p>{location.address}</p>
-                </div>
-              </div>
-              <div className="contact-detail">
-                <span className="icon">📞</span>
-                <div>
-                  <strong>Phone</strong>
-                  <p>+91 9216400005</p>
-                </div>
-              </div>
-              <div className="contact-detail">
-                <span className="icon">✉️</span>
-                <div>
-                  <strong>Email</strong>
-                  <p>deepaksingla239@gmail.com</p>
-                </div>
-              </div>
-              <div className="contact-detail">
-                <span className="icon">🕐</span>
-                <div>
-                  <strong>Working Hours</strong>
-                  <p>24/7 - Always Open</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Location Section */}
-            <div className="location-section">
-              <h4>📍 Our Location</h4>
-              <div className="location-details">
-                <div className="location-info">
-                  <p><strong>City:</strong> {location.city}</p>
-                  <p><strong>State:</strong> {location.state}</p>
-                  <p><strong>Country:</strong> {location.country}</p>
-                  <p><strong>Pincode:</strong> {location.pincode}</p>
-                </div>
-                <div className="nearby-places">
-                  <p><strong>Nearby:</strong></p>
-                  <ul>
-                    {location.nearby.map((place, index) => (
-                      <li key={index}>{place}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              {/* Map placeholder */}
-              <div className="map-placeholder">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d908.649555849454!2d75.39638788998352!3d29.986933090451032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39111f4472153cd7%3A0x9eb17ba12b841dd9!2sHotel%20Embassy%20and%20Restaurant!5e0!3m2!1sen!2sin!4v1782541389283!5m2!1sen!2sin"
-                  width="100%"
-                  height="450"
-                  style={{ border: 0, borderRadius: "8px" }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  title="Hotel Location"
-                ></iframe>
-              </div> {/* <-- This closing div was missing */}
-            </div> {/* <-- This closing div was missing */}
-
-            {/* Social Media Section */}
-            <div className="social-section">
-              <h4>Connect With Us</h4>
-              <div className="social-links">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                    data-color={social.color}
-                    title={social.name}
-                  >
-                    <span className="social-icon">{social.icon}</span>
-                    <span className="social-name">{social.name}</span>
-                  </a>
-                ))}
-              </div>
-            </div> {/* <-- This closing div was missing */}
-
-            {/* Quick Info */}
-            <div className="quick-info">
-              <div className="info-badge">
-                <span>✅</span> Book Direct & Save 10%
-              </div>
-              <div className="info-badge">
-                <span>⭐</span> 4.8/5 Rating - 500+ Reviews
-              </div>
-              <div className="info-badge">
-                <span>🏆</span> Best Hotel 2024 Award
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
+          {/* Contact Form - On Top */}
           {activeTab === "contact" && (
             <div className="contact-form-wrapper">
               <h3 className="form-title">Send us a Message</h3>
@@ -311,7 +191,7 @@ function Contact() {
             </div>
           )}
 
-          {/* Review Form */}
+          {/* Review Form - On Top */}
           {activeTab === "review" && (
             <div className="contact-form-wrapper">
               <h3 className="form-title">Share Your Experience</h3>
@@ -344,7 +224,6 @@ function Contact() {
                       </button>
                     ))}
                   </div>
-                  <span className="rating-text">{review.rating} / 5</span>
                 </div>
                 <textarea
                   placeholder="Write your review..."
@@ -359,6 +238,93 @@ function Contact() {
               </form>
             </div>
           )}
+
+          {/* Bottom Section - Map and Contact Info Side by Side */}
+          <div className="bottom-section">
+            {/* Map Section - Left */}
+            <div className="map-section">
+              <h4>📍 Our Location</h4>
+              <div className="map-placeholder">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d908.649555849454!2d75.39638788998352!3d29.986933090451032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39111f4472153cd7%3A0x9eb17ba12b841dd9!2sHotel%20Embassy%20and%20Restaurant!5e0!3m2!1sen!2sin!4v1782541389283!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Business Location"
+                ></iframe>
+              </div>
+            </div>
+
+            {/* Contact Info - Right */}
+            <div className="contact-info">
+              <h3>Get in Touch</h3>
+              <p>We're here to help and answer any questions you might have.</p>
+              
+              {/* Contact Details */}
+              <div className="contact-details">
+                <div className="contact-detail">
+                  <span className="icon">📍</span>
+                  <div>
+                    <strong>Address</strong>
+                    <p>{location.address}</p>
+                  </div>
+                </div>
+                <div className="contact-detail">
+                  <span className="icon">📞</span>
+                  <div>
+                    <strong>Phone</strong>
+                    <p>
+                      <a href={`tel:+91${businessInfo.phone1}`} className="contact-link">
+                        +91 {businessInfo.phone1}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div className="contact-detail">
+                  <span className="icon">✉️</span>
+                  <div>
+                    <strong>Email</strong>
+                    <p>
+                      <a href={`mailto:${businessInfo.email}`} className="contact-link">
+                        {businessInfo.email}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                <div className="contact-detail">
+                  <span className="icon">🕐</span>
+                  <div>
+                    <strong>Working Hours</strong>
+                    <p>Always Open</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Media Section - Below Map and Contact Info */}
+          <div className="social-section">
+            <h4>Connect With Us</h4>
+            <div className="social-links">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`social-link ${social.className}`}
+                  data-color={social.color}
+                  title={social.name}
+                >
+                  <span className="social-icon">{social.icon}</span>
+                  <span className="social-name">{social.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

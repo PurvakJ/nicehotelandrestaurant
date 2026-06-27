@@ -1,8 +1,8 @@
-/* About.css */
+/* About.css - Updated with better UI */
 .about-page {
   font-family: 'Georgia', serif;
   color: #2c1810;
-  background: #f8f6f4;
+  background: #faf8f6;
   padding: 40px 0 60px;
 }
 
@@ -26,6 +26,14 @@
   color: #2c1810;
   letter-spacing: 4px;
   margin: 0 0 10px;
+}
+
+.page-title::before {
+  content: '✦';
+  display: block;
+  font-size: 24px;
+  color: #b8a898;
+  margin-bottom: 8px;
 }
 
 .page-subtitle {
@@ -56,9 +64,9 @@
 
 .about-image-wrapper {
   position: relative;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(44, 24, 16, 0.10);
+  box-shadow: 0 10px 50px rgba(44, 24, 16, 0.12);
 }
 
 .about-image {
@@ -80,7 +88,7 @@
   background: #2c1810;
   color: #ffffff;
   padding: 8px 20px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
   letter-spacing: 2px;
 }
@@ -89,7 +97,7 @@
 /* ABOUT CONTENT */
 /* ========================= */
 .about-content h2 {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 400;
   color: #2c1810;
   letter-spacing: 2px;
@@ -98,7 +106,7 @@
 
 .about-description {
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.9;
   color: #5a4a3a;
   margin: 0 0 15px;
 }
@@ -110,7 +118,7 @@
 .about-features {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 15px;
   margin-top: 30px;
 }
 
@@ -118,16 +126,16 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 15px 20px;
+  padding: 16px 20px;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #f0ece8;
   transition: all 0.3s ease;
 }
 
 .about-feature:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(44, 24, 16, 0.06);
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.08);
   border-color: #d5ccc4;
 }
 
@@ -163,19 +171,19 @@
   background: #ffffff;
   padding: 30px 20px;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid #f0ece8;
   transition: all 0.3s ease;
 }
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+  box-shadow: 0 10px 40px rgba(44, 24, 16, 0.08);
 }
 
 .stat-number {
   display: block;
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 400;
   color: #2c1810;
   letter-spacing: 2px;
@@ -193,7 +201,7 @@
 /* SECTION TITLES */
 /* ========================= */
 .section-title {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 400;
   color: #2c1810;
   text-align: center;
@@ -228,49 +236,55 @@
 
 .room-categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
 .room-category-card {
   background: #ffffff;
-  padding: 30px;
-  border-radius: 8px;
+  border-radius: 12px;
+  overflow: hidden;
   border: 1px solid #f0ece8;
   transition: all 0.3s ease;
 }
 
 .room-category-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+  box-shadow: 0 10px 40px rgba(44, 24, 16, 0.08);
 }
 
-.category-image {
-  height: 120px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.category-image-wrapper {
   position: relative;
+  height: 200px;
+  overflow: hidden;
 }
 
-.executive-bg {
-  background: linear-gradient(135deg, #2c1810, #5a4a3a);
+.category-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.deluxe-bg {
-  background: linear-gradient(135deg, #d5ccc4, #b8a898);
+.room-category-card:hover .category-image-img {
+  transform: scale(1.05);
 }
 
 .category-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #2c1810;
   color: #ffffff;
-  font-size: 20px;
-  letter-spacing: 4px;
+  padding: 6px 20px;
+  border-radius: 4px;
+  font-size: 12px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.deluxe-bg .category-badge {
+.category-badge.deluxe {
+  background: #d5ccc4;
   color: #2c1810;
 }
 
@@ -278,7 +292,7 @@
   font-size: 22px;
   font-weight: 400;
   color: #2c1810;
-  margin: 0 0 10px;
+  margin: 20px 25px 10px;
   letter-spacing: 1px;
 }
 
@@ -286,13 +300,13 @@
   color: #8a7a6a;
   font-size: 14px;
   line-height: 1.6;
-  margin: 0 0 15px;
+  margin: 0 25px 15px;
 }
 
 .category-amenities {
   list-style: none;
   padding: 0;
-  margin: 0 0 15px;
+  margin: 0 25px 15px;
 }
 
 .category-amenities li {
@@ -310,6 +324,7 @@
   font-size: 16px;
   color: #2c1810;
   letter-spacing: 1px;
+  margin: 0 25px 25px;
 }
 
 /* ========================= */
@@ -321,16 +336,33 @@
 
 .banquet-details-card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 40px;
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid #f0ece8;
 }
 
+.banquet-image-wrapper {
+  height: 100%;
+  min-height: 350px;
+  overflow: hidden;
+}
+
+.banquet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.banquet-details-card:hover .banquet-image {
+  transform: scale(1.02);
+}
+
 .banquet-info {
-  padding: 35px;
+  padding: 35px 35px 35px 0;
 }
 
 .banquet-info h3 {
@@ -365,23 +397,34 @@
 .banquet-feature {
   background: #f8f6f4;
   padding: 6px 18px;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 20px;
+  font-size: 13px;
   color: #2c1810;
+  transition: all 0.3s ease;
+}
+
+.banquet-feature:hover {
+  background: #2c1810;
+  color: #ffffff;
 }
 
 .banquet-pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
 .banquet-price-item {
   background: #f8f6f4;
   padding: 12px 16px;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.banquet-price-item:hover {
+  background: #f0ece8;
 }
 
 .banquet-price-item span {
@@ -396,15 +439,92 @@
   margin-top: 4px;
 }
 
-.banquet-image-wrapper {
-  height: 100%;
-  min-height: 320px;
+/* ========================= */
+/* DINING SECTION */
+/* ========================= */
+.about-dining-section {
+  margin: 60px 0;
 }
 
-.banquet-image {
+.dining-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f0ece8;
+}
+
+.dining-image-wrapper {
+  height: 100%;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.dining-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dining-card:hover .dining-image {
+  transform: scale(1.02);
+}
+
+.dining-info {
+  padding: 35px 35px 35px 0;
+}
+
+.dining-info h3 {
+  font-size: 28px;
+  font-weight: 400;
+  color: #2c1810;
+  letter-spacing: 2px;
+  margin: 0 0 15px;
+}
+
+.dining-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5a4a3a;
+  margin: 0 0 20px;
+}
+
+.dining-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dining-feature {
+  background: #f8f6f4;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #2c1810;
+  transition: all 0.3s ease;
+}
+
+.dining-feature:hover {
+  background: #2c1810;
+  color: #ffffff;
+}
+
+.dining-hours {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f6f4;
+  border-radius: 6px;
+}
+
+.dining-hours span {
+  font-size: 14px;
+  color: #5a4a3a;
 }
 
 /* ========================= */
@@ -416,22 +536,22 @@
 
 .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 20px;
 }
 
 .amenity-item {
   background: #ffffff;
   padding: 30px 20px;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid #f0ece8;
   transition: all 0.3s ease;
 }
 
 .amenity-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.08);
   border-color: #d5ccc4;
 }
 
@@ -456,22 +576,114 @@
 }
 
 /* ========================= */
+/* LOCATION SECTION */
+/* ========================= */
+.about-location-section {
+  margin: 60px 0;
+}
+
+.location-card {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f0ece8;
+}
+
+.location-info {
+  padding: 35px;
+}
+
+.location-address {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.location-icon {
+  font-size: 32px;
+}
+
+.location-address h4 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2c1810;
+  margin: 0 0 5px;
+}
+
+.location-address p {
+  font-size: 15px;
+  color: #5a4a3a;
+  margin: 0;
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.location-detail {
+  padding: 10px 15px;
+  background: #f8f6f4;
+  border-radius: 6px;
+}
+
+.location-detail span {
+  font-size: 14px;
+  color: #5a4a3a;
+}
+
+.location-map {
+  height: 300px;
+  overflow: hidden;
+}
+
+.location-map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================= */
 /* CTA SECTION */
 /* ========================= */
 .about-cta {
   background: #2c1810;
-  padding: 50px 40px;
-  border-radius: 8px;
+  padding: 60px 50px;
+  border-radius: 12px;
   text-align: center;
   margin: 40px 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-cta::before {
+  content: '✦';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 60px;
+  color: rgba(255, 255, 255, 0.03);
+}
+
+.about-cta::after {
+  content: '✦';
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 60px;
+  color: rgba(255, 255, 255, 0.03);
 }
 
 .about-cta h2 {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 400;
   color: #ffffff;
   letter-spacing: 2px;
   margin: 0 0 12px;
+  position: relative;
 }
 
 .about-cta p {
@@ -480,26 +692,28 @@
   font-style: italic;
   margin: 0 0 25px;
   letter-spacing: 1px;
+  position: relative;
 }
 
 .about-cta-btn {
   background: #ffffff;
   color: #2c1810;
   border: none;
-  padding: 14px 45px;
+  padding: 16px 50px;
   font-size: 16px;
   font-family: 'Georgia', serif;
   letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 4px;
+  border-radius: 50px;
   text-transform: uppercase;
+  position: relative;
 }
 
 .about-cta-btn:hover {
   background: #f0ece8;
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
 
 /* ========================= */
@@ -510,16 +724,31 @@
     gap: 30px;
   }
   
-  .banquet-details-card {
+  .banquet-details-card,
+  .dining-card {
     grid-template-columns: 1fr;
   }
   
-  .banquet-image-wrapper {
+  .banquet-image-wrapper,
+  .dining-image-wrapper {
     min-height: 250px;
+  }
+  
+  .banquet-info,
+  .dining-info {
+    padding: 30px;
   }
   
   .about-image {
     height: 350px;
+  }
+  
+  .location-card {
+    grid-template-columns: 1fr;
+  }
+  
+  .location-map {
+    height: 250px;
   }
 }
 
@@ -548,10 +777,6 @@
     grid-template-columns: 1fr;
   }
   
-  .banquet-info {
-    padding: 25px;
-  }
-  
   .banquet-pricing-grid {
     grid-template-columns: 1fr;
   }
@@ -569,6 +794,16 @@
   }
   
   .about-cta h2 {
+    font-size: 24px;
+  }
+  
+  .dining-hours {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .banquet-info h3,
+  .dining-info h3 {
     font-size: 24px;
   }
 }
@@ -619,5 +854,29 @@
     right: 12px;
     padding: 5px 14px;
     font-size: 12px;
+  }
+  
+  .about-content h2 {
+    font-size: 26px;
+  }
+  
+  .banquet-info,
+  .dining-info {
+    padding: 20px;
+  }
+  
+  .location-info {
+    padding: 20px;
+  }
+  
+  .banquet-features-list,
+  .dining-features {
+    gap: 8px;
+  }
+  
+  .banquet-feature,
+  .dining-feature {
+    font-size: 12px;
+    padding: 5px 14px;
   }
 }
