@@ -22,34 +22,33 @@ function Rooms() {
 
   const roomData = {
     "Executive Suite": {
-      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+      image: "/images/executive.png",
       images: [
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
-        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945"
+       // "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+       // "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+       // "https://images.unsplash.com/photo-1566073771259-6a8506099945"
       ],
       description: "Spacious executive suite with modern amenities, perfect for business travelers.",
       fullDescription: "Our Executive Suite offers the perfect blend of comfort and functionality. Designed with the modern business traveler in mind, this suite features a dedicated work area, high-speed internet, and ergonomic seating. The spacious living area provides ample room to relax after a long day of meetings, while the luxurious bathroom features a rain shower and premium toiletries.",
       price: "$180/night",
-      amenities: ["King Bed", "Smart TV", "Rain Shower", "Work Desk", "Free WiFi", "Mini Bar", "Room Service", "Air Conditioning"],
+      amenities: ["King Bed", "Smart TV", "Rain Shower", "Work Desk", "Free WiFi",  "Room Service", "Air Conditioning"],
       badge: "Most Booked",
       category: "executive",
       size: "45 sqm",
       capacity: "2 Adults",
-      view: "City View",
       bedType: "King Size Bed"
     },
     "Deluxe Suite": {
-      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+      image: "/images/Delux room.png",
       images: [
-        "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
-        "https://images.unsplash.com/photo-1584132967333-10e028bd69f7",
-        "https://images.unsplash.com/photo-1582719508461-905c673771fd"
+       // "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+        //"https://images.unsplash.com/photo-1584132967333-10e028bd69f7",
+        //"https://images.unsplash.com/photo-1582719508461-905c673771fd"
       ],
       description: "Elegant deluxe suite with premium furnishings and stunning city views.",
-      fullDescription: "Indulge in luxury with our Deluxe Suite, featuring premium furnishings and breathtaking panoramic views. This suite is designed for those who appreciate the finer things in life, with a separate living area, a Jacuzzi bathtub, and a private balcony. The elegant decor and thoughtful amenities create an atmosphere of sophisticated comfort, perfect for romantic getaways or special celebrations.",
+      fullDescription: "Indulge in luxury with our Deluxe Suite, featuring premium furnishings and breathtaking panoramic views. This suite is designed for those who appreciate the finer things in life, with a separate living area. The elegant decor and thoughtful amenities create an atmosphere of sophisticated comfort, perfect for romantic getaways or special celebrations.",
       price: "$250/night",
-      amenities: ["King Bed", "Smart TV", "Jacuzzi", "Mini Bar", "Free WiFi", "Private Balcony", "Premium Toiletries", "24/7 Butler Service"],
+      amenities: ["King Bed", "Smart TV", "Free WiFi", "Premium Toiletries", "24/7 Butler Service"],
       badge: "Luxury Choice",
       category: "deluxe",
       size: "60 sqm",

@@ -15,58 +15,53 @@ function Home() {
   // Hero Carousel Images
   const heroImages = [
     {
-      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
-      title: "Welcome to Luxury",
-      subtitle: "Experience Elegance & Comfort"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+      url: "/images/executive.png",
       title: "Premium Accommodation",
       subtitle: "Luxury Rooms & Suites"
     },
     {
-      url: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3",
-      title: "Grand Events",
-      subtitle: "Banquet & Wedding Halls"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+      url: "/images/dinning2.png",
       title: "Fine Dining",
       subtitle: "Exquisite Culinary Experiences"
-    }
+    },
+    {
+      url: "/images/meeting1.png",
+      title: "Fine Dining",
+      subtitle: "Exquisite Culinary Experiences"
+    },
   ];
 
   // Gallery Images
   const galleryImages = [
     {
-      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
-      title: "Luxury Suite",
+      url: "/images/executive.png",
+      title: "Executive Room",
       badge: "Featured"
     },
     {
-      url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+      url: "/images/Delux room.png",
       title: "Premium Room",
       badge: "New"
     },
     {
-      url: "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
-      title: "Executive Room",
+      url: "/images/meeting 2.png",
+      title: "meeting area",
       badge: "Popular"
     },
     {
-      url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+      url: "/images/dining 1.png",
       title: "Dining Area",
       badge: "Luxury"
     },
     {
-      url: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3",
-      title: "Banquet Hall",
+      url: "/images/kitty hall.png",
+      title: "Party Hall",
       badge: "Grand"
     },
     {
       url: "https://images.unsplash.com/photo-1530023367847-a683933f4172",
       title: "Garden Terrace",
-      badge: "Scenic"
+      badge: "Coming Soon"
     }
   ];
 
@@ -76,7 +71,7 @@ function Home() {
       id: 1,
       name: "Executive Suite",
       category: "executive",
-      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39",
+      image: "/images/executive.png",
       description: "Spacious executive suite with modern amenities, perfect for business travelers.",
       price: "$180/night",
       amenities: ["King Bed", "Smart TV", "Rain Shower", "Work Desk", "Free WiFi"],
@@ -86,10 +81,10 @@ function Home() {
       id: 2,
       name: "Deluxe Suite",
       category: "deluxe",
-      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+      image: "/images/delux room.png",
       description: "Elegant deluxe suite with premium furnishings and stunning city views.",
       price: "$250/night",
-      amenities: ["King Bed", "Smart TV", "Jacuzzi", "Mini Bar", "Free WiFi"],
+      amenities: ["King Bed", "Smart TV",  "Mini Bar", "Free WiFi"],
       badge: "Luxury Choice"
     },
   ];
@@ -99,15 +94,10 @@ function Home() {
     {
       id: 1,
       name: "Grand Ballroom",
-      capacity: "500 Guests",
-      image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3",
-      description: "Elegant ballroom with crystal chandeliers and sophisticated decor. Perfect for weddings, galas, and large celebrations.",
+      capacity: "50-100 Guests",
+      image: "/images/kitty hall.png",
+      description: "Elegant ballroom with crystal chandeliers and sophisticated decor. Perfect for weddings, galas, and small celebrations.",
       features: ["Stage", "Sound System", "Chandeliers", "Dance Floor"],
-      pricing: {
-        "Wedding Package": "$5,000",
-        "Corporate Event": "$3,500",
-        "Social Gathering": "$2,500"
-      }
     }
   ];
 
@@ -128,8 +118,8 @@ function Home() {
     {
       icon: "🏛️",
       title: "Event Venues",
-      description: "Elegant halls for weddings & conferences",
-      stat: "3 Halls"
+      description: "Elegant halls for Kitty & get together",
+      stat: "1 Halls"
     },
     {
       icon: "⭐",
@@ -471,7 +461,7 @@ function Home() {
         <div className="container">
           <h2 className="section-title">Grand Event Venues</h2>
           <p className="section-subtitle">
-            Host your special occasions in our elegant banquet halls
+            Host your special occasions in our elegant Party halls
           </p>
           
           {banquetHalls.map((hall) => (
@@ -491,18 +481,6 @@ function Home() {
                   <div className="feature-grid">
                     {hall.features.map((feature, idx) => (
                       <span key={idx} className="feature-tag">{feature}</span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="banquet-pricing">
-                  <h4>Pricing</h4>
-                  <div className="pricing-grid">
-                    {Object.entries(hall.pricing).map(([key, value]) => (
-                      <div key={key} className="pricing-item">
-                        <span className="pricing-label">{key}</span>
-                        <span className="pricing-value">{value}</span>
-                      </div>
                     ))}
                   </div>
                 </div>

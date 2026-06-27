@@ -16,7 +16,7 @@ function About() {
         <div className="about-grid">
           <div className="about-image-wrapper">
             <img
-              src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c"
+              src="/images/"
               alt="Nice Hotel Exterior"
               className="about-image"
             />
@@ -28,11 +28,11 @@ function About() {
             <p className="about-description">
               Welcome to <strong>Nice Hotel & Restaurant</strong>, where elegance meets comfort. 
               Our establishment features <strong>9 beautifully designed luxury rooms</strong>, 
-              a fine dining restaurant, and a magnificent banquet hall for 
+              a fine dining restaurant, and a magnificent Party hall for 
               weddings, conferences, and special events.
             </p>
             <p className="about-description">
-              Located in the heart of the city, we offer world-class hospitality 
+              Located in the Center of the city, we offer world-class hospitality 
               with personalized service to make your stay truly memorable.
             </p>
             
@@ -54,7 +54,7 @@ function About() {
               <div className="about-feature">
                 <span className="feature-icon">🏛️</span>
                 <div>
-                  <h4>Banquet Hall</h4>
+                  <h4>Party Hall</h4>
                   <p>Grand Ballroom for 500 Guests</p>
                 </div>
               </div>
@@ -76,7 +76,7 @@ function About() {
             <span className="stat-label">Luxury Rooms</span>
           </div>
           <div className="stat-card">
-            <span className="stat-number">500</span>
+            <span className="stat-number">100</span>
             <span className="stat-label">Banquet Capacity</span>
           </div>
           <div className="stat-card">
@@ -120,8 +120,8 @@ function About() {
               <ul className="category-amenities">
                 <li>✓ King Bed</li>
                 <li>✓ Smart TV</li>
-                <li>✓ Jacuzzi</li>
                 <li>✓ Mini Bar</li>
+                <li>✓ Work Desk</li>
                 <li>✓ Free WiFi</li>
               </ul>
               <span className="category-price">From $250/night</span>
@@ -137,10 +137,10 @@ function About() {
           <div className="banquet-details-card">
             <div className="banquet-info">
               <h3>Grand Ballroom</h3>
-              <p className="banquet-capacity">👥 Capacity: 500 Guests</p>
+              <p className="banquet-capacity">👥 Capacity: 100 Guests</p>
               <p className="banquet-description">
                 Elegant ballroom with crystal chandeliers and sophisticated decor. 
-                Perfect for weddings, galas, and large celebrations.
+                Perfect for party, kitty and small celebrations.
               </p>
               <div className="banquet-features-list">
                 <span className="banquet-feature">🎤 Stage</span>
@@ -165,7 +165,7 @@ function About() {
             </div>
             <div className="banquet-image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3" 
+                src="/images/kitty hall.png" 
                 alt="Grand Ballroom"
                 className="banquet-image"
               />
@@ -180,21 +180,6 @@ function About() {
           
           <div className="amenities-grid">
             <div className="amenity-item">
-              <span className="amenity-icon">🌊</span>
-              <h4>Swimming Pool</h4>
-              <p>Outdoor pool with sun deck</p>
-            </div>
-            <div className="amenity-item">
-              <span className="amenity-icon">💪</span>
-              <h4>Fitness Center</h4>
-              <p>State-of-the-art equipment</p>
-            </div>
-            <div className="amenity-item">
-              <span className="amenity-icon">🍷</span>
-              <h4>Wine Bar</h4>
-              <p>Premium selection of wines</p>
-            </div>
-            <div className="amenity-item">
               <span className="amenity-icon">🚗</span>
               <h4>Valet Parking</h4>
               <p>Complimentary parking service</p>
@@ -206,7 +191,7 @@ function About() {
             </div>
             <div className="amenity-item">
               <span className="amenity-icon">🧖</span>
-              <h4>Spa Services</h4>
+              <h4>Room Services</h4>
               <p>Relaxing treatments available</p>
             </div>
           </div>

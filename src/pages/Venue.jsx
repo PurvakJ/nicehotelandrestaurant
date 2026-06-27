@@ -5,7 +5,7 @@ import "./Venue.css";
 
 function Venue() {
   const [form, setForm] = useState({
-    hallName: "Grand Ballroom",
+    hallName: "Party Hall",
     name: "",
     phone: "",
     email: "",
@@ -20,80 +20,77 @@ function Venue() {
 
   const halls = [
     {
-      name: "Grand Ballroom",
-      capacity: "500 Guests",
-      image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3",
+      name: "Party Hall",
+      capacity: "100 Guests",
+      image: "/images/kitty hall.png",
       images: [
-        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3",
-        "https://images.unsplash.com/photo-1530023367847-a683933f4172",
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0"
+        "/images/kitty1.png",
+        "/images/kitty2.png",
       ],
-      description: "Elegant ballroom with crystal chandeliers and sophisticated decor. Perfect for weddings, galas, and large celebrations.",
-      fullDescription: "Our Grand Ballroom is the epitome of elegance and luxury. Featuring stunning crystal chandeliers, high ceilings, and sophisticated decor, this venue creates the perfect atmosphere for unforgettable events. The ballroom can accommodate up to 500 guests and comes equipped with a state-of-the-art sound system, professional lighting, and a grand stage. Whether you're planning a fairy-tale wedding, a corporate gala, or a grand celebration, our dedicated events team will ensure every detail is perfect.",
-      features: ["Stage", "Sound System", "Chandeliers", "Dance Floor", "Professional Lighting", "AV Equipment", "Dressing Rooms", "VIP Lounge"],
+      description: "Elegant party hall with sophisticated decor. Perfect for  kitty parties, and social gatherings.",
+      fullDescription: "Our Party Hall is the epitome of elegance and comfort. Featuring tasteful decor, comfortable seating, and a warm ambiance, this venue creates the perfect atmosphere for memorable celebrations. The hall can accommodate up to 100 guests and comes equipped with a professional sound system, elegant lighting, and a dedicated stage. Whether you're planning a wedding reception, a kitty party, a birthday celebration, or a social gathering, our dedicated events team will ensure every detail is perfect.",
+      features: ["Comfortable Seating", "Sound System", "Elegant Lighting", "Stage", "Dance Floor", "Decorative Setup", "Changing Rooms", "Parking Available"],
       pricing: {
-        "Wedding Package": "$5,000",
-        "Corporate Event": "$3,500",
-        "Social Gathering": "$2,500",
+        "Kitty Party": "₹15,000",
+        "Birthday Party": "₹20,000",
+        "Social Gathering": "₹25,000",
         "Custom Package": "Contact Us"
       },
       badge: "Most Popular",
       category: "premium",
-      area: "1000 sqm",
-      floor: "2nd Floor",
+      area: "500 sqm",
+      floor: "Ground Floor",
       rating: "4.9"
     },
     {
-      name: "Conference Hall",
-      capacity: "200 Guests",
-      image: "https://images.unsplash.com/photo-1511578314322-379afb476865",
+      name: "Meeting Room",
+      capacity: "10 Guests",
+      image: "/images/meeting 2.png",
       images: [
-        "https://images.unsplash.com/photo-1511578314322-379afb476865",
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-        "https://images.unsplash.com/photo-1497366216548-37526070297c"
+        "/images/meeting 1.png",
       ],
-      description: "Modern conference space with state-of-the-art equipment and professional amenities.",
-      fullDescription: "Designed for business excellence, our Conference Hall offers a professional environment equipped with cutting-edge technology. The hall features high-speed internet, video conferencing capabilities, projection systems, and comfortable seating arrangements. With a capacity of 200 guests, it's ideal for corporate meetings, seminars, workshops, and training sessions. Our business center provides additional support services to ensure your event runs seamlessly.",
-      features: ["Video Conferencing", "Projector & Screen", "High-Speed WiFi", "Whiteboard", "Flip Charts", "Breakout Rooms", "Business Center", "Catering Services"],
+      description: "Comfortable meeting room with essential amenities for small gatherings, training, and discussions.",
+      fullDescription: "Our Meeting Room offers a quiet and comfortable environment for small groups. With ergonomic seating, natural light, and a professional ambiance, it's perfect for board meetings, training sessions, workshops, or intimate gatherings. The room is equipped with a sound system, whiteboard, and basic audio, but no projector or screen—keeping it simple and distraction-free. Our team will arrange the seating to suit your needs.",
+      features: ["Comfortable Seating", "Sound System", "Natural Light", "AC", "WiFi", "Refreshments on Request"],
       pricing: {
-        "Full Day": "$1,200",
-        "Half Day": "$750",
-        "Corporate Package": "$2,000",
-        "Monthly Rental": "Contact Us"
+        "Half Day (4 hrs)": "₹8,000",
+        "Full Day (8 hrs)": "₹15,000",
+        "Monthly Package": "Contact Us"
       },
       badge: "Business Choice",
       category: "standard",
-      area: "400 sqm",
+      area: "200 sqm",
       floor: "1st Floor",
       rating: "4.7"
     },
     {
       name: "Garden Terrace",
-      capacity: "150 Guests",
+      capacity: "Coming Soon",
       image: "https://images.unsplash.com/photo-1530023367847-a683933f4172",
       images: [
         "https://images.unsplash.com/photo-1530023367847-a683933f4172",
         "https://images.unsplash.com/photo-1566073771259-6a8506099945",
         "https://images.unsplash.com/photo-1519167758481-83f550bb49b3"
       ],
-      description: "Beautiful outdoor venue with scenic views and a romantic atmosphere.",
-      fullDescription: "Experience the beauty of nature at our Garden Terrace, an enchanting outdoor venue perfect for intimate gatherings and romantic celebrations. Surrounded by lush greenery and offering breathtaking views, this venue creates a magical atmosphere for outdoor weddings, cocktail parties, and social gatherings. The terrace features elegant lighting, comfortable seating arrangements, and can be customized with themed decorations. Our team ensures weather protection and comfort for your special occasion.",
-      features: ["Outdoor Setting", "Scenic Views", "Garden Lighting", "Weather Protection", "Bar Service", "Fire Pits", "Photo Opportunities", "Parking Available"],
+      description: "Beautiful outdoor venue with scenic views - Opening Soon!",
+      fullDescription: "Coming Soon! Our Garden Terrace will be a beautiful outdoor venue perfect for intimate gatherings and romantic celebrations. Surrounded by lush greenery and offering breathtaking views, this venue will create a magical atmosphere for outdoor events. Stay tuned for the grand opening!",
+      features: ["Outdoor Setting", "Scenic Views", "Garden Lighting", "Weather Protection", "Bar Service", "Coming Soon"],
       pricing: {
-        "Wedding Package": "$3,500",
-        "Private Event": "$2,000",
-        "Cocktail Party": "$1,500",
-        "Custom Package": "Contact Us"
+        "Coming Soon": "Contact Us"
       },
-      badge: "Romantic Venue",
-      category: "outdoor",
-      area: "600 sqm",
+      badge: "Coming Soon",
+      category: "coming-soon",
+      area: "Coming Soon",
       floor: "Ground Floor",
       rating: "4.8"
     }
   ];
 
   const handleBookNow = (hallName) => {
+    if (hallName === "Garden Terrace") {
+      alert("Garden Terrace is coming soon! Stay tuned for updates.");
+      return;
+    }
     setSelectedHall(hallName);
     setForm({...form, hallName: hallName});
     setIsModalOpen(true);
@@ -101,6 +98,10 @@ function Venue() {
   };
 
   const handleViewDetails = (hallName) => {
+    if (hallName === "Garden Terrace") {
+      alert("Garden Terrace is coming soon! We'll announce the opening date shortly.");
+      return;
+    }
     setSelectedHall(hallName);
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
@@ -116,7 +117,7 @@ function Venue() {
     await hallBooking(form);
     alert("Venue Booking Submitted Successfully!");
     setForm({
-      hallName: "Grand Ballroom",
+      hallName: "Party Hall",
       name: "",
       phone: "",
       email: "",
@@ -139,7 +140,7 @@ function Venue() {
       <div className="container">
         {/* Hero Section */}
         <div className="venue-hero">
-          <h1 className="page-title">Banquet & Event Halls</h1>
+          <h1 className="page-title">Party & Event Halls</h1>
           <p className="page-subtitle">Elegant venues for your special occasions</p>
           <div className="hero-underline"></div>
         </div>
@@ -147,24 +148,24 @@ function Venue() {
         {/* Venue Categories Summary */}
         <div className="venue-categories-summary">
           <div className="category-summary-card premium">
-            <span className="category-icon">🏛️</span>
+            <span className="category-icon">🎉</span>
             <div>
-              <h4>Grand Ballroom</h4>
-              <p>Premium Indoor Venue</p>
+              <h4>Party Hall</h4>
+              <p>Celebrations & Weddings</p>
             </div>
           </div>
           <div className="category-summary-card standard">
             <span className="category-icon">💼</span>
             <div>
-              <h4>Conference Hall</h4>
-              <p>Business & Corporate</p>
+              <h4>Meeting Room</h4>
+              <p>Business & Training</p>
             </div>
           </div>
-          <div className="category-summary-card outdoor">
+          <div className="category-summary-card coming-soon">
             <span className="category-icon">🌿</span>
             <div>
               <h4>Garden Terrace</h4>
-              <p>Outdoor & Romantic</p>
+              <p>Coming Soon</p>
             </div>
           </div>
         </div>
@@ -176,7 +177,7 @@ function Venue() {
               <div className="hall-image-wrapper">
                 <img src={hall.image} alt={hall.name} className="hall-image" />
                 <span className={`hall-category-badge ${hall.category}`}>
-                  {hall.category}
+                  {hall.category === "coming-soon" ? "Coming Soon" : hall.category}
                 </span>
                 {hall.badge && (
                   <span className="hall-badge">{hall.badge}</span>
@@ -190,7 +191,9 @@ function Venue() {
                 <h3>{hall.name}</h3>
                 <div className="hall-meta">
                   <span className="hall-capacity">👥 {hall.capacity}</span>
-                  <span className="hall-area">📐 {hall.area}</span>
+                  {hall.area !== "Coming Soon" && (
+                    <span className="hall-area">📐 {hall.area}</span>
+                  )}
                 </div>
                 <p className="hall-description">{hall.description}</p>
                 
@@ -204,12 +207,20 @@ function Venue() {
                 </div>
                 
                 <div className="hall-footer">
-                  <div className="hall-pricing">
-                    <span className="price-from">From</span>
-                    <span className="hall-price">
-                      {Object.values(hall.pricing)[0]}
-                    </span>
-                  </div>
+                  {hall.category !== "coming-soon" && (
+                    <div className="hall-pricing">
+                      <span className="price-from">From</span>
+                      <span className="hall-price">
+                        {Object.values(hall.pricing)[0]}
+                      </span>
+                    </div>
+                  )}
+                  {hall.category === "coming-soon" && (
+                    <div className="hall-pricing">
+                      <span className="price-from">Status</span>
+                      <span className="hall-price coming-soon-text">Coming Soon</span>
+                    </div>
+                  )}
                   <div className="hall-actions">
                     <button 
                       className="view-details-btn"
@@ -218,10 +229,11 @@ function Venue() {
                       View Details
                     </button>
                     <button 
-                      className="book-venue-btn"
+                      className={`book-venue-btn ${hall.category === "coming-soon" ? "disabled" : ""}`}
                       onClick={() => handleBookNow(hall.name)}
+                      disabled={hall.category === "coming-soon"}
                     >
-                      Book Now
+                      {hall.category === "coming-soon" ? "Coming Soon" : "Book Now"}
                     </button>
                   </div>
                 </div>
@@ -239,7 +251,7 @@ function Venue() {
             <div className="feature-card">
               <span className="feature-icon">🎯</span>
               <h4>Perfect Venues</h4>
-              <p>Multiple options for every occasion and guest count</p>
+              <p>Beautiful spaces for every occasion and guest count</p>
             </div>
             <div className="feature-card">
               <span className="feature-icon">👔</span>
@@ -261,7 +273,7 @@ function Venue() {
       </div>
 
       {/* Modal/Dialog Box */}
-      {isModalOpen && selectedHall && (
+      {isModalOpen && selectedHall && selectedHall !== "Garden Terrace" && (
         <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content">
             <button className="modal-close" onClick={closeModal}>×</button>
@@ -299,7 +311,9 @@ function Venue() {
                 
                 <div className="modal-venue-meta">
                   <span>👥 Capacity: {halls.find(h => h.name === selectedHall)?.capacity}</span>
-                  <span>📐 {halls.find(h => h.name === selectedHall)?.area}</span>
+                  {halls.find(h => h.name === selectedHall)?.area !== "Coming Soon" && (
+                    <span>📐 {halls.find(h => h.name === selectedHall)?.area}</span>
+                  )}
                   <span>📍 {halls.find(h => h.name === selectedHall)?.floor}</span>
                 </div>
 
@@ -345,10 +359,11 @@ function Venue() {
                       required
                     >
                       <option value="Wedding">Wedding</option>
-                      <option value="Corporate Event">Corporate Event</option>
+                      <option value="Kitty Party">Kitty Party</option>
+                      <option value="Birthday Party">Birthday Party</option>
                       <option value="Social Gathering">Social Gathering</option>
-                      <option value="Conference">Conference</option>
-                      <option value="Party">Party</option>
+                      <option value="Corporate Event">Corporate Event</option>
+                      <option value="Meeting">Meeting / Training</option>
                       <option value="Other">Other</option>
                     </select>
                   </div>

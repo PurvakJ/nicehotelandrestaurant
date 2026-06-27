@@ -39,7 +39,7 @@ const OfferPopup = () => {
             {currentOffer ? currentOffer[2] : "Enjoy 20% off on your first stay with us!"}
           </p>
           <p className="offer-popup-subtext">
-            Luxury rooms • Fine dining • Banquet hall
+            Luxury rooms • Fine dining • Party hall
           </p>
           <button className="offer-popup-btn" onClick={() => window.location.href = '/contact'}>
             Book Now

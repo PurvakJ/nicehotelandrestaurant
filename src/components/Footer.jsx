@@ -48,21 +48,21 @@ function Footer() {
             <span className="contact-icon">📍</span>
             <div>
               <strong>Address</strong>
-              <p>123 Luxury Street, City Center, 10001</p>
+              <p>Near chugli ghar, Mansa 151505</p>
             </div>
           </div>
           <div className="contact-item">
             <span className="contact-icon">📞</span>
             <div>
               <strong>Phone</strong>
-              <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+              <p><a href="tel:+9192164-00005">+91 92164-00005</a></p>
             </div>
           </div>
           <div className="contact-item">
             <span className="contact-icon">✉️</span>
             <div>
               <strong>Email</strong>
-              <p><a href="mailto:info@nicehotel.com">info@nicehotel.com</a></p>
+              <p><a href="mailto:deepaksingla239@gmail.com">deepaksingla239@gmail.com</a></p>
             </div>
           </div>
           <div className="contact-item">

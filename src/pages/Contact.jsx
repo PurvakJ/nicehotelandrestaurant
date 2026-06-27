@@ -127,20 +127,19 @@ function Contact() {
 
   // Location data
   const location = {
-    address: "123 Luxury Street, City Center, Mumbai - 400001",
-    city: "Mumbai",
-    state: "Maharashtra",
+    address: "Near chugli ghar Mansa, 151505",
+    city: "Mansa",
+    state: "Punjab",
     country: "India",
-    pincode: "400001",
+    pincode: "151505",
     coordinates: {
       lat: "19.0760",
       lng: "72.8777"
     },
     nearby: [
-      "📍 5 mins from Airport",
+      "📍 5 mins from Busstand",
       "📍 2 mins from Railway Station",
-      "📍 Walking distance to Shopping Mall",
-      "📍 Close to Business District"
+      "📍 Walking distance to Market",
     ]
   };
 
@@ -185,14 +184,14 @@ function Contact() {
                 <span className="icon">📞</span>
                 <div>
                   <strong>Phone</strong>
-                  <p>+91 98765 43210</p>
+                  <p>+91 9216400005</p>
                 </div>
               </div>
               <div className="contact-detail">
                 <span className="icon">✉️</span>
                 <div>
                   <strong>Email</strong>
-                  <p>info@nicehotel.com</p>
+                  <p>deepaksingla239@gmail.com</p>
                 </div>
               </div>
               <div className="contact-detail">
@@ -223,19 +222,20 @@ function Contact() {
                   </ul>
                 </div>
               </div>
-              {/* Map placeholder - you can replace with actual iframe */}
+              {/* Map placeholder */}
               <div className="map-placeholder">
                 <iframe
-                  src={`https://maps.google.com/maps?q=${location.coordinates.lat},${location.coordinates.lng}&z=15&output=embed`}
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d908.649555849454!2d75.39638788998352!3d29.986933090451032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39111f4472153cd7%3A0x9eb17ba12b841dd9!2sHotel%20Embassy%20and%20Restaurant!5e0!3m2!1sen!2sin!4v1782541389283!5m2!1sen!2sin"
                   width="100%"
-                  height="200"
+                  height="450"
                   style={{ border: 0, borderRadius: "8px" }}
                   allowFullScreen
                   loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   title="Hotel Location"
                 ></iframe>
-              </div>
-            </div>
+              </div> {/* <-- This closing div was missing */}
+            </div> {/* <-- This closing div was missing */}
 
             {/* Social Media Section */}
             <div className="social-section">
@@ -256,7 +256,7 @@ function Contact() {
                   </a>
                 ))}
               </div>
-            </div>
+            </div> {/* <-- This closing div was missing */}
 
             {/* Quick Info */}
             <div className="quick-info">

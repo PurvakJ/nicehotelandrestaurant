@@ -17,19 +17,19 @@ function Services() {
       description: "Exquisite cuisine prepared by world-class chefs",
       fullDescription: "Indulge in culinary excellence at our fine dining restaurant. Our award-winning chefs create exquisite dishes using the finest ingredients, offering both local and international cuisine in an elegant setting.",
       category: "dining",
-      features: ["International Cuisine", "Wine Selection", "Private Dining", "Breakfast Buffet", "Room Service"]
+      features: [ "Private Dining", "Breakfast Buffet", "Room Service"]
     },
     { 
       icon: "💒", 
-      name: "Wedding Hall", 
-      description: "Elegant ballroom for weddings and celebrations",
-      fullDescription: "Create unforgettable memories in our stunning wedding hall. With crystal chandeliers, sophisticated decor, and capacity for 500 guests, we provide the perfect setting for your dream wedding.",
+      name: "Party Hall", 
+      description: "Elegant ballroom for Kitty and celebrations",
+      fullDescription: "Create unforgettable memories in our stunning Party hall. With crystal chandeliers, sophisticated decor, and capacity for 500 guests, we provide the perfect setting for your dream wedding.",
       category: "events",
-      features: ["500 Guests", "Stage", "Sound System", "Dance Floor", "Decor Services"]
+      features: ["100 Guests", "Sound System", "Dance Floor", "Decor Services"]
     },
     { 
       icon: "📊", 
-      name: "Conference Hall", 
+      name: "Meeting Hall", 
       description: "Modern facilities for business meetings and events",
       fullDescription: "Host successful business events in our state-of-the-art conference hall. Equipped with the latest technology, high-speed internet, and professional support services for seamless presentations and meetings.",
       category: "events",
