@@ -500,3 +500,29 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   }
 }
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo {
+  height: 40px;  /* Adjust as needed */
+  width: auto;
+  object-fit: contain;
+}
+
+/* If you want a circular logo */
+.brand-logo-circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 30px;
+  }
+}
