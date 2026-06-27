@@ -1173,3 +1173,278 @@
     padding: 20px;
   }
 }
+
+/* ========================= */
+/* OFFERS SECTION */
+/* ========================= */
+.admin-section {
+  margin-top: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.section-title {
+  color: #2c1810;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.section-subtitle {
+  color: #8a7a6a;
+  font-size: 13px;
+  font-style: italic;
+  margin: -5px 0 15px;
+}
+
+.add-offer-btn {
+  background: #2c1810;
+  color: #ffffff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  font-family: 'Georgia', serif;
+  white-space: nowrap;
+}
+
+.add-offer-btn:hover {
+  background: #1a0f0a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(44, 24, 16, 0.15);
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.offer-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid #f0ece8;
+  border-left: 4px solid #2c1810;
+  display: flex;
+  flex-direction: column;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+}
+
+.offer-card.inactive {
+  border-left-color: #d5ccc4;
+  opacity: 0.7;
+}
+
+.offer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.offer-header h3 {
+  margin: 0;
+  color: #2c1810;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  word-break: break-word;
+}
+
+.offer-status-badge {
+  padding: 3px 14px;
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.offer-status-badge.active {
+  background: #e8e0d8;
+  color: #2c1810;
+}
+
+.offer-status-badge.inactive {
+  background: #f0ece8;
+  color: #8a7a6a;
+}
+
+.offer-description {
+  color: #8a7a6a;
+  margin: 10px 0;
+  line-height: 1.6;
+  font-size: 14px;
+  flex: 1;
+  word-break: break-word;
+}
+
+.offer-discount-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.offer-discount-label {
+  color: #8a7a6a;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.offer-discount {
+  color: #2c1810;
+  font-weight: 400;
+  background: #f0ece8;
+  padding: 4px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.offer-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* FIX: Added proper cursor and hover styles for edit and delete buttons */
+.edit-btn {
+  background: #f0ece8;
+  color: #2c1810;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 6px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  flex: 1;
+  min-width: 80px;
+}
+
+.edit-btn:hover {
+  background: #e0d8d0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.1);
+}
+
+.delete-btn {
+  background: #d5ccc4;
+  color: #2c1810;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 6px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  flex: 1;
+  min-width: 80px;
+}
+
+.delete-btn:hover {
+  background: #c4b8ae;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.1);
+}
+
+/* Offer Actions - Fixed for better accessibility */
+.offer-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  width: 100%;
+}
+
+.edit-btn {
+  background: #f0ece8;
+  color: #2c1810;
+  border: 2px solid #e0d8d0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  flex: 1;
+  min-width: 80px;
+  font-weight: 500;
+  position: relative;
+  z-index: 10;
+}
+
+.edit-btn:hover {
+  background: #e0d8d0;
+  border-color: #2c1810;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.15);
+}
+
+.edit-btn:active {
+  transform: translateY(0px);
+}
+
+.delete-btn {
+  background: #d5ccc4;
+  color: #2c1810;
+  border: 2px solid #c4b8ae;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  flex: 1;
+  min-width: 80px;
+  font-weight: 500;
+  position: relative;
+  z-index: 10;
+}
+
+.delete-btn:hover {
+  background: #c4b8ae;
+  border-color: #8a7a6a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.15);
+}
+
+.delete-btn:active {
+  transform: translateY(0px);
+}
+
+.offer-description {
+  color: #000000 !important; /* Added !important for extra assurance */
+  margin: 10px 0;
+  line-height: 1.6;
+  font-size: 14px;
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Admin page - black text */
+.admin-page .offer-description {
+  color: #000000 !important;
+}

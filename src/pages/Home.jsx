@@ -164,29 +164,22 @@ function Home() {
           {
             id: 1,
             title: "Summer Special",
-            description: "Get 20% off on all room bookings. Limited time offer!",
-            discount: "20% OFF",
-            status: "active"
-          },
-          {
-            id: 2,
-            title: "Wedding Package",
-            description: "Book our grand ballroom for your special day and get complimentary decoration.",
+            description: "Get 15% off on all room bookings. Limited time offer!",
             discount: "15% OFF",
             status: "active"
           },
           {
-            id: 3,
+            id: 2,
             title: "Family Getaway",
             description: "Special family package with complimentary breakfast and kids stay free.",
-            discount: "25% OFF",
+            discount: "10% OFF",
             status: "active"
           },
           {
-            id: 4,
+            id: 3,
             title: "Corporate Retreat",
             description: "Perfect for business meetings with conference room and catering included.",
-            discount: "30% OFF",
+            discount: "10% OFF",
             status: "active"
           }
         ]);
@@ -363,7 +356,11 @@ const formatDiscount = (discount) => {
                   </div>
                   <div className="offer-content">
                     <h3 className="offer-title">{offer.title}</h3>
-                    <p className="offer-description">{offer.description}</p>
+                    <p
+  className="offer-description"
+>
+  {offer.description}
+</p>
                     <div className="offer-footer">
                       <span className="offer-validity">✓ Limited Time</span>
                     </div>

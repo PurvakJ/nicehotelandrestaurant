@@ -1,6 +1,6 @@
 // Admin.jsx
 import { useEffect, useState } from "react";
-import { getAllData, updateStatus, sendApprovalEmail, addOffer, updateOffer, deleteOffer } from "../services/api";
+import { getAllData, addOffer, updateOffer, deleteOffer } from "../services/api";
 import "./Admin.css";
 
 function Admin() {
@@ -27,11 +27,7 @@ function Admin() {
 
   // Filter States
   const [filterType, setFilterType] = useState("all");
-  const [filterStatus, setFilterStatus] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-
-  // Track which items are being updated
-  const [updatingItems, setUpdatingItems] = useState(new Set());
 
   // Admin Credentials
   const ADMIN_CREDENTIALS = {
@@ -72,6 +68,7 @@ function Admin() {
   const loadData = async () => {
     try {
       const result = await getAllData();
+      console.log("Loaded data:", result);
       setData(result.bookings || []);
       setOffers(result.offers || []);
       setReviews(result.reviews || []);
@@ -83,10 +80,9 @@ function Admin() {
     }
   };
 
-  // Filter Data
+  // Filter Data - only type filter and search
   const filteredData = data.filter(item => {
     if (filterType !== "all" && item.type !== filterType) return false;
-    if (filterStatus !== "all" && item.status !== filterStatus) return false;
     if (searchTerm) {
       const searchLower = searchTerm.toLowerCase();
       const nameMatch = (item.name || item.roomName || item.hallName || "").toLowerCase().includes(searchLower);
@@ -100,99 +96,13 @@ function Admin() {
   // Get counts for stats
   const getStats = () => {
     const total = data.length;
-    const pending = data.filter(item => item.status === "Pending" || !item.status).length;
-    const approved = data.filter(item => item.status === "Approved").length;
-    const rejected = data.filter(item => item.status === "Rejected").length;
-    return { total, pending, approved, rejected };
+    const rooms = data.filter(item => item.type === "Room").length;
+    const halls = data.filter(item => item.type === "Hall").length;
+    const contacts = data.filter(item => item.type === "Contact").length;
+    return { total, rooms, halls, contacts };
   };
 
   const stats = getStats();
-
-  // Send email notification for status update
-  const sendStatusEmail = async (item, newStatus) => {
-    try {
-      const bookingType = item.type === "Room" ? item.roomName || "Room Booking" :
-                         item.type === "Hall" ? item.hallName || "Hall Booking" :
-                         "Contact Query";
-      
-      const customerName = item.name || "Guest";
-      
-      await sendApprovalEmail(
-        item.email,
-        customerName,
-        bookingType,
-        newStatus
-      );
-      
-      return true;
-    } catch (error) {
-      console.error("Error sending email:", error);
-      return false;
-    }
-  };
-
-  const handleStatusUpdate = async (item, newStatus) => {
-    // Add item to updating set immediately
-    setUpdatingItems(prev => new Set(prev).add(item.id));
-    
-    // Update local state immediately - this makes buttons disappear
-    const updatedData = data.map(d => 
-      d.id === item.id ? { ...d, status: newStatus } : d
-    );
-    setData(updatedData);
-
-    try {
-      const sheetName = item.type === "Room" ? "RoomBookings" : 
-                       item.type === "Hall" ? "HallBookings" : 
-                       "ContactQueries";
-      
-      const result = await updateStatus({
-        sheetName: sheetName,
-        id: item.id,
-        status: newStatus,
-        email: item.email,
-        customerName: item.name || "Guest",
-        bookingType: item.type === "Room" ? item.roomName || "Room Booking" :
-                     item.type === "Hall" ? item.hallName || "Hall Booking" :
-                     "Contact Query"
-      });
-
-      if (result.success) {
-        // Send email notification
-        const emailSent = await sendStatusEmail(item, newStatus);
-        
-        setNotification({ 
-          type: "success", 
-          message: `${item.type} ${newStatus.toLowerCase()} successfully! ${emailSent ? 'Email sent to customer.' : 'Email could not be sent.'}`
-        });
-        
-        // Refresh data from server
-        await loadData();
-      } else {
-        // Revert if failed
-        const revertedData = data.map(d => 
-          d.id === item.id ? { ...d, status: item.status } : d
-        );
-        setData(revertedData);
-        setNotification({ type: "error", message: result.message || "Failed to update status" });
-      }
-    } catch (error) {
-      console.error("Error updating status:", error);
-      // Revert if error
-      const revertedData = data.map(d => 
-        d.id === item.id ? { ...d, status: item.status } : d
-      );
-      setData(revertedData);
-      setNotification({ type: "error", message: "Error updating status" });
-    } finally {
-      // Remove from updating set
-      setUpdatingItems(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(item.id);
-        return newSet;
-      });
-    }
-  };
 
   // Format discount for display
   const formatDiscount = (discount) => {
@@ -213,15 +123,29 @@ function Admin() {
   // Handle discount input - store as decimal
   const handleDiscountChange = (e) => {
     let value = e.target.value;
+    // Remove any % symbol if present
     value = value.replace('%', '');
+    
+    // If empty, set empty string
+    if (value === '' || value === '-') {
+      setOfferForm({...offerForm, discount: value});
+      return;
+    }
+    
     const num = parseFloat(value);
-    if (!isNaN(num) && num > 0) {
+    
+    // Check if it's a valid number
+    if (!isNaN(num) && num >= 0) {
+      // If number is greater than 1, treat it as percentage (e.g., 10 = 10%)
+      // and store as decimal (0.1)
       if (num >= 1) {
         setOfferForm({...offerForm, discount: (num / 100).toString()});
       } else {
+        // If number is less than 1, it's already a decimal
         setOfferForm({...offerForm, discount: num.toString()});
       }
     } else {
+      // If not a valid number, keep the input as is
       setOfferForm({...offerForm, discount: value});
     }
   };
@@ -252,11 +176,19 @@ function Admin() {
 
   const handleUpdateOffer = async () => {
     try {
+      const offerId = editingOffer.id || editingOffer._id;
+      
+      if (!offerId) {
+        setNotification({ type: "error", message: "Offer ID not found" });
+        return;
+      }
+
       const result = await updateOffer({
-        id: editingOffer.id,
+        id: offerId,
         ...offerForm,
         discount: offerForm.discount || "0.1"
       });
+      
       if (result.success) {
         setNotification({ type: "success", message: "Offer updated successfully!" });
         loadData();
@@ -268,14 +200,21 @@ function Admin() {
       }
     } catch (error) {
       console.error("Error updating offer:", error);
-      setNotification({ type: "error", message: "Error updating offer" });
+      setNotification({ type: "error", message: "Error updating offer: " + error.message });
     }
   };
 
-  const handleDeleteOffer = async (id) => {
-    if (window.confirm("Are you sure you want to delete this offer?")) {
+  const handleDeleteOffer = async (offer) => {
+    const offerId = offer.id || offer._id;
+    
+    if (!offerId) {
+      setNotification({ type: "error", message: "Offer ID not found" });
+      return;
+    }
+
+    if (window.confirm(`Are you sure you want to delete "${offer.title}"?`)) {
       try {
-        const result = await deleteOffer(id);
+        const result = await deleteOffer(offerId);
         if (result.success) {
           setNotification({ type: "success", message: "Offer deleted successfully!" });
           loadData();
@@ -284,16 +223,17 @@ function Admin() {
         }
       } catch (error) {
         console.error("Error deleting offer:", error);
-        setNotification({ type: "error", message: "Error deleting offer" });
+        setNotification({ type: "error", message: "Error deleting offer: " + error.message });
       }
     }
   };
 
   const openEditOffer = (offer) => {
+    console.log("Editing offer:", offer);
     setEditingOffer(offer);
     setOfferForm({
-      title: offer.title,
-      description: offer.description,
+      title: offer.title || "",
+      description: offer.description || "",
       discount: offer.discount || "",
       status: offer.status || "active"
     });
@@ -308,7 +248,6 @@ function Admin() {
 
   const clearFilters = () => {
     setFilterType("all");
-    setFilterStatus("all");
     setSearchTerm("");
   };
 
@@ -362,7 +301,6 @@ function Admin() {
     );
   }
 
-
   return (
     <div className="admin-page">
       <div className="container">
@@ -370,7 +308,7 @@ function Admin() {
           <div className="admin-header-top">
             <div>
               <h1 className="page-title">Admin Dashboard</h1>
-              <p className="admin-subtitle">Manage bookings, offers, reviews & more</p>
+              <p className="admin-subtitle">Manage customer inquiries & offers</p>
             </div>
             <button className="admin-logout-btn" onClick={handleLogout}>
               Sign Out
@@ -388,19 +326,19 @@ function Admin() {
           <div className="admin-stats">
             <div className="admin-stat-card total">
               <span className="stat-number">{stats.total}</span>
-              <span className="stat-label">Total Bookings</span>
+              <span className="stat-label">Total Inquiries</span>
             </div>
-            <div className="admin-stat-card pending">
-              <span className="stat-number">{stats.pending}</span>
-              <span className="stat-label">Pending</span>
+            <div className="admin-stat-card rooms">
+              <span className="stat-number">{stats.rooms}</span>
+              <span className="stat-label">Room Bookings</span>
             </div>
-            <div className="admin-stat-card approved">
-              <span className="stat-number">{stats.approved}</span>
-              <span className="stat-label">Approved</span>
+            <div className="admin-stat-card halls">
+              <span className="stat-number">{stats.halls}</span>
+              <span className="stat-label">Hall Bookings</span>
             </div>
-            <div className="admin-stat-card rejected">
-              <span className="stat-number">{stats.rejected}</span>
-              <span className="stat-label">Rejected</span>
+            <div className="admin-stat-card contacts">
+              <span className="stat-number">{stats.contacts}</span>
+              <span className="stat-label">Contact Queries</span>
             </div>
           </div>
         </div>
@@ -414,16 +352,6 @@ function Admin() {
               <option value="Room">Rooms</option>
               <option value="Hall">Halls</option>
               <option value="Contact">Contacts</option>
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Filter by Status:</label>
-            <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-              <option value="all">All Status</option>
-              <option value="Pending">Pending</option>
-              <option value="Approved">Approved</option>
-              <option value="Rejected">Rejected</option>
             </select>
           </div>
 
@@ -455,29 +383,46 @@ function Admin() {
             <div className="empty-state">No offers available. Create your first offer!</div>
           ) : (
             <div className="offers-grid">
-              {offers.map((offer) => (
-                <div key={offer.id} className={`offer-card ${offer.status}`}>
-                  <div className="offer-header">
-                    <h3>{offer.title}</h3>
-                    <span className={`offer-status-badge ${offer.status}`}>
-                      {offer.status}
-                    </span>
+              {offers.map((offer, index) => {
+                const offerKey = offer.id || offer._id || `offer-${index}`;
+                return (
+                  <div key={offerKey} className={`offer-card ${offer.status}`}>
+                    <div className="offer-header">
+                      <h3>{offer.title}</h3>
+                      <span className={`offer-status-badge ${offer.status}`}>
+                        {offer.status}
+                      </span>
+                    </div>
+                    <p className="offer-description">{offer.description}</p>
+                    <div className="offer-discount-wrapper">
+                      <span className="offer-discount-label">Discount</span>
+                      <span className="offer-discount">{formatDiscount(offer.discount)}</span>
+                    </div>
+                    <div className="offer-actions">
+                      <button 
+                        className="edit-btn" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openEditOffer(offer);
+                        }}
+                        type="button"
+                      >
+                        ✎ Edit
+                      </button>
+                      <button 
+                        className="delete-btn" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteOffer(offer);
+                        }}
+                        type="button"
+                      >
+                        ✕ Delete
+                      </button>
+                    </div>
                   </div>
-                  <p className="offer-description">{offer.description}</p>
-                  <div className="offer-discount-wrapper">
-                    <span className="offer-discount-label">Discount</span>
-                    <span className="offer-discount">{formatDiscount(offer.discount)}</span>
-                  </div>
-                  <div className="offer-actions">
-                    <button className="edit-btn" onClick={() => openEditOffer(offer)}>
-                      ✎ Edit
-                    </button>
-                    <button className="delete-btn" onClick={() => handleDeleteOffer(offer.id)}>
-                      ✕ Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -493,59 +438,47 @@ function Admin() {
             <div className="empty-state">No reviews submitted yet.</div>
           ) : (
             <div className="reviews-grid">
-              {reviews.map((review) => (
-                <div key={review.id} className={`review-card ${review.status?.toLowerCase() || 'pending'}`}>
-                  <div className="review-header">
-                    <div className="review-user">
-                      <h4>{review.name || "Anonymous"}</h4>
-                      <p className="review-email">{review.email || "No email"}</p>
-                    </div>
-                    <div className="review-rating">
-                      <div className="stars">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <span key={star} className={star <= review.rating ? "star-filled" : "star-empty"}>
-                            ★
-                          </span>
-                        ))}
+              {reviews.map((review, index) => {
+                const reviewKey = review.id || review._id || `review-${index}`;
+                return (
+                  <div key={reviewKey} className={`review-card ${review.status?.toLowerCase() || 'pending'}`}>
+                    <div className="review-header">
+                      <div className="review-user">
+                        <h4>{review.name || "Anonymous"}</h4>
+                        <p className="review-email">{review.email || "No email"}</p>
                       </div>
-                      <span className="rating-number">{review.rating}/5</span>
+                      <div className="review-rating">
+                        <div className="stars">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <span key={star} className={star <= review.rating ? "star-filled" : "star-empty"}>
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                        <span className="rating-number">{review.rating}/5</span>
+                      </div>
                     </div>
+                    <p className="review-text">"{review.review || "No review content"}"</p>
                   </div>
-                  <p className="review-text">"{review.review || "No review content"}"</p>
-                  <div className="review-footer">
-                    <span className={`status-badge ${review.status?.toLowerCase() || 'pending'}`}>
-                      {review.status || "Pending"}
-                    </span>
-                    <span className="review-date">
-                      {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : "Recent"}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
 
         {/* Bookings Section */}
         <div className="admin-section">
-          <h2 className="section-title">All Bookings & Queries</h2>
-          <p className="section-subtitle">{filteredData.length} items found</p>
+          <h2 className="section-title">Customer Inquiries</h2>
+          <p className="section-subtitle">{filteredData.length} inquiries found</p>
           
           {filteredData.length === 0 ? (
-            <div className="empty-state">No bookings found matching your filters.</div>
+            <div className="empty-state">No inquiries found matching your filters.</div>
           ) : (
             <div className="admin-items">
-              {filteredData.map((item) => {
-                const isApproved = item.status === "Approved";
-                const isRejected = item.status === "Rejected";
-                const isUpdating = updatingItems.has(item.id);
-                const isPending = item.status === "Pending" || !item.status;
-                
-                // Only show buttons if status is pending
-                const showButtons = isPending && !isUpdating;
-                
+              {filteredData.map((item, index) => {
+                const itemKey = item.id || item._id || `item-${index}`;
                 return (
-                  <div key={item.id} className={`admin-item ${item.status?.toLowerCase() || 'pending'} ${isUpdating ? 'updating' : ''}`}>
+                  <div key={itemKey} className="admin-item">
                     <div className="item-info">
                       <h4>
                         <span className="item-type">{item.type}</span>
@@ -561,47 +494,6 @@ function Admin() {
                         </p>
                       )}
                       {item.message && <p><strong>Message:</strong> {item.message}</p>}
-                      <p>
-                        <strong>Status:</strong> 
-                        <span className={`status-badge ${item.status?.toLowerCase() || 'pending'}`}>
-                          {item.status || "Pending"}
-                        </span>
-                      </p>
-                    </div>
-                    
-                    <div className="item-actions">
-                      {showButtons && (
-                        <>
-                          <button 
-                            className="approve-btn"
-                            onClick={() => handleStatusUpdate(item, "Approved")}
-                          >
-                            ✓ Approve & Send Email
-                          </button>
-                          <button 
-                            className="reject-btn"
-                            onClick={() => handleStatusUpdate(item, "Rejected")}
-                          >
-                            ✕ Reject & Send Email
-                          </button>
-                        </>
-                      )}
-                      
-                      {isUpdating && (
-                        <span className="updating-label">⏳ Updating...</span>
-                      )}
-                      
-                      {isApproved && !isUpdating && (
-                        <span className="approved-label">✓ Approved</span>
-                      )}
-                      
-                      {isRejected && !isUpdating && (
-                        <span className="rejected-label">✕ Rejected</span>
-                      )}
-                      
-                      {isPending && !isUpdating && !showButtons && (
-                        <span className="pending-label">⏳ Pending</span>
-                      )}
                     </div>
                   </div>
                 );
@@ -646,7 +538,7 @@ function Admin() {
                 <label>Discount (%)</label>
                 <input
                   type="text"
-                  value={offerForm.discount}
+                  value={offerForm.discount ? Math.round(parseFloat(offerForm.discount) * 100) || '' : ''}
                   onChange={handleDiscountChange}
                   placeholder="e.g., 20"
                   required

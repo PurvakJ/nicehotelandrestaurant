@@ -1842,3 +1842,8 @@
     font-size: 14px !important;
   }
 }
+
+/* Home page - white text */
+.hotel-home .offer-description {
+  color: #ffffff !important;
+}

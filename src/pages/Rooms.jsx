@@ -16,6 +16,7 @@ function Rooms() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState('details');
   const [activeImage, setActiveImage] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const roomTypes = [
     "Executive Suite",
@@ -65,6 +66,9 @@ function Rooms() {
     }
   };
 
+  // Owner's WhatsApp number
+  const OWNER_PHONE = "919216400005"; // Without + sign, with country code
+
   const handleBookNow = (roomName) => {
     setSelectedRoom(roomName);
     setModalMode('booking');
@@ -85,20 +89,69 @@ function Rooms() {
   const closeModal = () => {
     setIsModalOpen(false);
     document.body.style.overflow = 'auto';
+    setIsSubmitting(false);
+  };
+
+  // Send WhatsApp message to owner
+  const sendWhatsAppMessage = (bookingData) => {
+    const room = roomData[bookingData.roomName];
+    const message = `🏨 *New Room Booking Request*
+
+📋 *Booking Details:*
+• Room: ${bookingData.roomName}
+• Date: ${new Date(bookingData.date).toLocaleDateString()}
+• Price: ${room?.price || 'N/A'}
+
+👤 *Customer Details:*
+• Name: ${bookingData.name}
+• Phone: ${bookingData.phone}
+• Email: ${bookingData.email}
+
+📅 *Booking Date:* ${new Date().toLocaleString()}
+
+Please contact the customer to confirm the booking.`;
+
+    // Encode the message for WhatsApp URL
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${OWNER_PHONE}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
   };
 
   const submit = async (e) => {
     e.preventDefault();
-    await roomBooking(form);
-    alert("Booking Submitted Successfully!");
-    setForm({
-      roomName: "Executive Suite",
-      name: "",
-      phone: "",
-      email: "",
-      date: ""
-    });
-    closeModal();
+    setIsSubmitting(true);
+
+    try {
+      // 1. Send to Database
+      const result = await roomBooking(form);
+      
+      if (result.success) {
+        // 2. Send WhatsApp message to owner
+        sendWhatsAppMessage(form);
+        
+        // 3. Show success message
+        alert("✅ Booking Submitted Successfully!\n\nWe will contact you shortly to confirm your reservation.");
+        
+        // 4. Reset form
+        setForm({
+          roomName: "Executive Suite",
+          name: "",
+          phone: "",
+          email: "",
+          date: ""
+        });
+        closeModal();
+      } else {
+        alert("❌ Failed to submit booking. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting booking:", error);
+      alert("❌ An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCloseModal = (e) => {
@@ -382,8 +435,8 @@ function Rooms() {
                       />
                     </div>
 
-                    <button type="submit" className="submit-btn">
-                      Confirm Booking - {getRoom(selectedRoom)?.price}
+                    <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                      {isSubmitting ? 'Submitting...' : `Confirm Booking - ${getRoom(selectedRoom)?.price}`}
                     </button>
                   </form>
                 </div>

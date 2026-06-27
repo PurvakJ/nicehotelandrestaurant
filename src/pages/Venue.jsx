@@ -19,6 +19,7 @@ function Venue() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState('details');
   const [activeImage, setActiveImage] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const halls = [
     {
@@ -74,6 +75,9 @@ function Venue() {
     }
   ];
 
+  // Owner's WhatsApp number
+  const OWNER_PHONE = "919216400005"; // Without + sign, with country code
+
   const handleBookNow = (hallName) => {
     if (hallName === "Garden Terrace") {
       alert("Garden Terrace is coming soon! Stay tuned for updates.");
@@ -102,23 +106,77 @@ function Venue() {
   const closeModal = () => {
     setIsModalOpen(false);
     document.body.style.overflow = 'auto';
+    setIsSubmitting(false);
+  };
+
+  // Send WhatsApp message to owner
+  const sendWhatsAppMessage = (bookingData) => {
+    const hall = halls.find(h => h.name === bookingData.hallName);
+    const message = `🎉 *New Venue Booking Request*
+
+📋 *Event Details:*
+• Venue: ${bookingData.hallName}
+• Event Type: ${bookingData.eventType}
+• Date: ${new Date(bookingData.date).toLocaleDateString()}
+• Expected Guests: ${bookingData.guestCount || 'Not specified'}
+• Capacity: ${hall?.capacity || 'N/A'}
+
+👤 *Customer Details:*
+• Name: ${bookingData.name}
+• Phone: ${bookingData.phone}
+• Email: ${bookingData.email}
+
+📝 *Special Requests:*
+${bookingData.specialRequests || 'None'}
+
+📅 *Booking Date:* ${new Date().toLocaleString()}
+
+Please contact the customer to confirm the booking and discuss event details.`;
+
+    // Encode the message for WhatsApp URL
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${OWNER_PHONE}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
   };
 
   const submit = async (e) => {
     e.preventDefault();
-    await hallBooking(form);
-    alert("Venue Booking Submitted Successfully!");
-    setForm({
-      hallName: "Party Hall",
-      name: "",
-      phone: "",
-      email: "",
-      date: "",
-      eventType: "Wedding",
-      guestCount: "",
-      specialRequests: ""
-    });
-    closeModal();
+    setIsSubmitting(true);
+
+    try {
+      // 1. Send to Database
+      const result = await hallBooking(form);
+      
+      if (result.success) {
+        // 2. Send WhatsApp message to owner
+        sendWhatsAppMessage(form);
+        
+        // 3. Show success message
+        alert("✅ Venue Booking Submitted Successfully!\n\nWe will contact you shortly to confirm your event details.");
+        
+        // 4. Reset form
+        setForm({
+          hallName: "Party Hall",
+          name: "",
+          phone: "",
+          email: "",
+          date: "",
+          eventType: "Wedding",
+          guestCount: "",
+          specialRequests: ""
+        });
+        closeModal();
+      } else {
+        alert("❌ Failed to submit booking. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting booking:", error);
+      alert("❌ An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCloseModal = (e) => {
@@ -445,8 +503,8 @@ function Venue() {
                       />
                     </div>
 
-                    <button type="submit" className="submit-btn">
-                      Confirm Booking
+                    <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                      {isSubmitting ? 'Submitting...' : 'Confirm Booking'}
                     </button>
                   </form>
                 </div>
