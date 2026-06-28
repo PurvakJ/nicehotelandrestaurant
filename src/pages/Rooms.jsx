@@ -29,8 +29,8 @@ function Rooms() {
       images: [
         "/images/executive.png",
         "/images/executive2.png",
-        "/images/executive3.png",
-        "/images/executive4.png"
+        "/images/bathroom.png",
+        "/images/executive1.png"
       ],
       description: "Spacious executive suite with modern amenities, perfect for business travelers.",
       fullDescription: "Our Executive Suite offers the perfect blend of comfort and functionality. Designed with the modern business traveler in mind, this suite features a dedicated work area, high-speed internet, and ergonomic seating. The spacious living area provides ample room to relax after a long day of meetings, while the luxurious bathroom features a rain shower and premium toiletries.",
@@ -48,9 +48,8 @@ function Rooms() {
       image: "/images/Delux room.png",
       images: [
         "/images/Delux room.png",
-        "/images/deluxe2.png",
-        "/images/deluxe3.png",
-        "/images/deluxe4.png"
+        "/images/delux bed.png",
+        "/images/bathroom.png"
       ],
       description: "Elegant deluxe suite with premium furnishings and stunning city views.",
       fullDescription: "Indulge in luxury with our Deluxe Suite, featuring premium furnishings and breathtaking panoramic views. This suite is designed for those who appreciate the finer things in life, with a separate living area. The elegant decor and thoughtful amenities create an atmosphere of sophisticated comfort, perfect for romantic getaways or special celebrations.",

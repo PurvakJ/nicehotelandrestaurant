@@ -1,5 +1,6 @@
+// Footer.js
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaWhatsapp, FaPhoneAlt, FaMapMarkerAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaPhoneAlt, FaMapMarkerAlt, FaEnvelope, FaClock, } from "react-icons/fa";
 import "./Footer.css";
 
 function Footer() {
@@ -8,9 +9,8 @@ function Footer() {
   // Business information (consistent with Contact.js)
   const businessInfo = {
     phone1: '9216400005',
-    email: 'deepaksingla239@gmail.com',
-    instagram: 'https://www.instagram.com/bholasingh_sons_tyre/',
-    facebook: 'https://www.facebook.com/p/BHOLA-SINGH-SONS-61565127653219/',
+    email: 'nicehotelandrestaurant@gmail.com',
+    instagram: 'https://www.instagram.com/nice_hotel_and_resturant/?hl=en',
     whatsapp: 'https://wa.me/919216400005',
     address: 'Near chugli ghar, Mansa 151505',
   };
@@ -22,19 +22,12 @@ function Footer() {
         <div className="footer-section brand-section">
           <div className="footer-brand">
             <span className="footer-brand-icon">🏨</span>
-            <h3>Nice Hotel &<span className="brand-highlight">RESTAURANT</span></h3>
+            <h3>Nice Hotel &<span className="brand-highlight">Restaurant</span></h3>
           </div>
-
+          <p className="footer-brand-desc">
+            Experience luxury and comfort with our premium hospitality services.
+          </p>
           <div className="footer-social">
-            <a 
-              href={businessInfo.facebook} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="social-link facebook" 
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
             <a 
               href={businessInfo.instagram} 
               target="_blank" 
@@ -62,11 +55,12 @@ function Footer() {
           <ul className="footer-links">
             <li><Link to="/">🏠 Home</Link></li>
             <li><Link to="/about">ℹ️ About</Link></li>
-            <li><Link to="/rooms">✨ Rooms</Link></li>
-            <li><Link to="/veunu">✨ Venue</Link></li>
+            <li><Link to="/rooms">🛏️ Rooms</Link></li>
+            <li><Link to="/venue">🏛️ Venue</Link></li>
+            <li><Link to="/menu">🍽️ Menu</Link></li>
             <li><Link to="/services">✨ Services</Link></li>
             <li><Link to="/contact">📞 Contact</Link></li>
-            <li><Link to="/admin">📞 Admin</Link></li>
+            <li><Link to="/admin">🔑 Admin</Link></li>
           </ul>
         </div>
 
@@ -100,7 +94,7 @@ function Footer() {
             <span className="contact-icon"><FaClock /></span>
             <div>
               <strong>Working Hours</strong>
-              <p>Always Open</p>
+              <p>🕐 Always Open</p>
             </div>
           </div>
         </div>
@@ -120,6 +114,15 @@ function Footer() {
             />
             <button type="submit" className="newsletter-btn">Subscribe</button>
           </form>
+          <div className="footer-payment">
+            <p className="payment-text">We Accept:</p>
+            <div className="payment-icons">
+              <span>💳</span>
+              <span>🏦</span>
+              <span>📱</span>
+              <span>💰</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -129,9 +132,8 @@ function Footer() {
           <p className="copyright">
             © {currentYear} Nice Hotel & Restaurant. All Rights Reserved.
           </p>
-
           <p className="footer-credit">
-            Crafted with ❤️ for premium amenities
+            Crafted with ❤️ for premium hospitality
           </p>
         </div>
       </div>

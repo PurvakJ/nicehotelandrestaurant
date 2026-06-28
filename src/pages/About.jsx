@@ -16,7 +16,7 @@ function About() {
         <div className="about-grid">
           <div className="about-image-wrapper">
             <img
-              src="/images/hotel exterior.png"
+              src="/images/exterior.jpeg"
               alt="Nice Hotel Exterior"
               className="about-image"
             />
@@ -35,7 +35,6 @@ function About() {
               Located in the Center of the city, we offer world-class hospitality 
               with personalized service to make your stay truly memorable.
             </p>
-            
             <div className="about-features">
               <div className="about-feature">
                 <span className="feature-icon">🛏️</span>
@@ -113,7 +112,7 @@ function About() {
                 <li>✓ Work Desk</li>
                 <li>✓ Free WiFi</li>
               </ul>
-              <span className="category-price">From $180/night</span>
+              <span className="category-price">From ₹1500/night</span>
             </div>
 
             <div className="room-category-card">
@@ -134,7 +133,7 @@ function About() {
                 <li>✓ Work Desk</li>
                 <li>✓ Free WiFi</li>
               </ul>
-              <span className="category-price">From $250/night</span>
+              <span className="category-price">From ₹2000/night</span>
             </div>
           </div>
         </div>
@@ -158,6 +157,12 @@ function About() {
               <p className="banquet-description">
                 Elegant ballroom with crystal chandeliers and sophisticated decor. 
                 Perfect for parties, kitty parties, and small celebrations.
+                Whether you are hosting an intimate kitty party, 
+                a joyous birthday celebration, or a small, cherished wedding reception,
+                 our ballroom provides the perfect, versatile canvas. Our dedicated events team is committed to transforming your vision into reality, ensuring every moment is nothing short of spectacular. Complement your event with our restaurant's acclaimed culinary artistry, offering a bespoke menu that will delight your guests and make your celebration truly unforgettable. Discover the perfect blend of impeccable service and breathtaking surroundings, exclusively with us.
+
+
+
               </p>
               <div className="banquet-features-list">
                 <span className="banquet-feature">🎤 Stage</span>
@@ -197,7 +202,7 @@ function About() {
           <div className="dining-card">
             <div className="dining-image-wrapper">
               <img 
-                src="/images/dining.png" 
+                src="/images/Private dining.png" 
                 alt="Fine Dining Restaurant"
                 className="dining-image"
               />
@@ -208,7 +213,11 @@ function About() {
                 Indulge in culinary excellence at our fine dining restaurant. 
                 Our award-winning chefs create exquisite dishes using the finest 
                 ingredients, offering both local and international cuisine in an 
-                elegant setting.
+                elegant setting.Every plate is a work of art, presented with precision and passion, designed to delight all the senses. The experience is elevated by our restaurant's refined and intimate setting, where soft lighting, impeccable service, and an atmosphere of quiet luxury create the perfect backdrop for a memorable meal. Whether you are celebrating a special occasion or simply indulging in an extraordinary evening out, our restaurant promises a dining experience that transcends the ordinary and leaves a lasting impression.
+
+
+
+                
               </p>
               <div className="dining-features">
                 <span className="dining-feature">🍳 Breakfast Buffet</span>

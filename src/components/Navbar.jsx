@@ -13,6 +13,7 @@ export default function Navbar() {
     { path: "/about", label: "About", icon: "ℹ️" },
     { path: "/rooms", label: "Rooms", icon: "🛏️" },
     { path: "/venue", label: "Venue", icon: "🏛️" },
+    { path: "/menu", label: "Menu", icon: "🍽️" },
     { path: "/services", label: "Services", icon: "✨" },
     { path: "/contact", label: "Contact", icon: "📞" },
   ];
@@ -54,10 +55,10 @@ export default function Navbar() {
       <div className="navbar-container">
         <div className="navbar-brand">
           <Link to="/" className="brand-link">
-          <span className="brand-icon">
-  <img src="https://i.postimg.cc/mhxQ3hGt/53f3a174-6fcb-4bf4-bea3-7f79881b9814.png" alt="Hotel Logo" className="brand-logo" />
-</span>
-            <span className="brand-name">Nice Hotel & Restaurant<span className="brand-highlight"></span></span>
+            <span className="brand-icon">
+              <img src="https://i.postimg.cc/mhxQ3hGt/53f3a174-6fcb-4bf4-bea3-7f79881b9814.png" alt="Hotel Logo" className="brand-logo" />
+            </span>
+            <span className="brand-name">Nice Hotel &<span className="brand-highlight">Restaurant</span></span>
           </Link>
           <button 
             className={`mobile-toggle ${isMobile ? 'active' : ''}`}
@@ -91,8 +92,8 @@ export default function Navbar() {
           {/* Mobile bottom actions */}
           <div className="mobile-actions">
             <div className="mobile-contact-info">
-              <span>📞 +1 234 567 890</span>
-              <span>✉️ info@nicehotel.com</span>
+              <span>📞 +91 9216400005</span>
+              <span>✉️ nicehotelandrestaurant@gmail.com</span>
             </div>
             <div className="mobile-social">
               <span>📱</span>

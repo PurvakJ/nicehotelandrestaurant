@@ -74,7 +74,7 @@ function Home() {
       category: "executive",
       image: "/images/executive.png",
       description: "Spacious executive suite with modern amenities, perfect for business travelers.",
-      price: "$180/night",
+      price: "₹1500/night",
       amenities: ["King Bed", "Smart TV", "Rain Shower", "Work Desk", "Free WiFi"],
       badge: "Most Booked"
     },
@@ -84,7 +84,7 @@ function Home() {
       category: "deluxe",
       image: "/images/Delux room.png",
       description: "Elegant deluxe suite with premium furnishings and stunning city views.",
-      price: "$250/night",
+      price: "₹2000/night",
       amenities: ["King Bed", "Smart TV", "Mini Bar", "Free WiFi"],
       badge: "Luxury Choice"
     },
@@ -97,8 +97,9 @@ function Home() {
       name: "Grand Ballroom",
       capacity: "50-100 Guests",
       image: "/images/kitty hall.png",
-      description: "Elegant ballroom with crystal chandeliers and sophisticated decor. Perfect for weddings, galas, and small celebrations.",
-      features: ["Stage", "Sound System", "Chandeliers", "Dance Floor"],
+      description: "Elegant ballroom with crystal chandeliers and sophisticated decor. Perfect for weddings, galas, and small celebrations.                 Indulge in culinary excellence at our fine dining restaurant. Our award-winning chefs create exquisite dishes using the finest ingredients, offering both local and international cuisine in an elegant setting.Every plate is a work of art, presented with precision and passion, designed to delight all the senses. The experience is elevated by our restaurant's refined and intimate setting, where soft lighting, impeccable service, and an atmosphere of quiet luxury create the perfect backdrop for a memorable meal. Whether you are celebrating a special occasion or simply indulging in an extraordinary evening out, our restaurant promises a dining experience that transcends the ordinary and leaves a lasting impression.",
+      features: ["Stage", "Sound System", "Chandeliers", "Dance Floor" ,"Stage", "Sound System", "Catering"],
+      descriptions:"Indulge in culinary excellence at our fine dining restaurant. Our award-winning chefs create exquisite dishes using the finest ingredients, offering both local and international cuisine in an elegant setting.Every plate is a work of art, presented with precision and passion, designed to delight all the senses. ",
     }
   ];
 
@@ -519,6 +520,7 @@ const formatDiscount = (discount) => {
               <div className="banquet-details">
                 <h3>{hall.name}</h3>
                 <p className="banquet-description">{hall.description}</p>
+                <p></p>
                 
                 <div className="banquet-features">
                   <h4>Features</h4>
@@ -528,7 +530,7 @@ const formatDiscount = (discount) => {
                     ))}
                   </div>
                 </div>
-                
+                <p className="banquet-description">{hall.descriptions}</p>
                 <button 
                   className="banquet-btn"
                   onClick={() => navigate("/venue")}

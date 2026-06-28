@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { contactQuery, submitReview as submitReviewApi } from "../services/api";
-import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import "./Contact.css";
 
 function Contact() {
@@ -24,9 +24,8 @@ function Contact() {
   // Business information (same as App.js)
   const businessInfo = {
     phone1: '9216400005',
-    email: 'deepaksingla239@gmail.com',
-    instagram: 'https://www.instagram.com/bholasingh_sons_tyre/',
-    facebook: 'https://www.facebook.com/p/BHOLA-SINGH-SONS-61565127653219/',
+    email: 'nicehotelandrestaurant@gmail.com',
+    instagram: 'https://www.instagram.com/nice_hotel_and_resturant/?hl=en',
     whatsapp: 'https://wa.me/919216400005',
     address: 'Near chugli ghar, Mansa 151505',
   };
@@ -92,13 +91,6 @@ function Contact() {
 
   // Social Media Data with React Icons
   const socialLinks = [
-    {
-      name: "Facebook",
-      icon: <FaFacebookF />,
-      url: businessInfo.facebook,
-      color: "#1877F2",
-      className: "facebook"
-    },
     {
       name: "Instagram",
       icon: <FaInstagram />,
