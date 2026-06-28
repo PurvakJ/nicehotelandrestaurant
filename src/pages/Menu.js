@@ -6,6 +6,138 @@ const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  // Food images mapping for menu items using Unsplash and other image sources
+  const getFoodImage = (itemName) => {
+    const name = itemName.toLowerCase();
+    
+    // Beverages
+    if (name.includes('lassi')) return 'https://indianfoods.co.in/wp-content/uploads/2026/01/Lassi-Cover-Image.jpg';
+    if (name.includes('lime soda') || name.includes('fresh lime')) return 'https://img.freepik.com/free-photo/front-view-different-drinks-colorful-inside-bottles_140725-14407.jpg?semt=ais_hybrid&w=740&q=80';
+    if (name.includes('coffee')) return 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=100&h=100&fit=crop';
+    if (name.includes('tea')) return 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=100&h=100&fit=crop';
+    if (name.includes('milk')) return 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=100&h=100&fit=crop';
+    if (name.includes('soft drink') || name.includes('soda')) return 'https://img.freepik.com/free-photo/front-view-different-drinks-colorful-inside-bottles_140725-14407.jpg?semt=ais_hybrid&w=740&q=80';
+    if (name.includes('mineral water')) return 'https://h2oglobalnews.com/wp-content/uploads/2023/08/water-types-scaled.webp';
+    
+    // Juice
+    if (name.includes('pineapple')) return 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=100&h=100&fit=crop';
+    if (name.includes('orange')) return 'https://images.unsplash.com/photo-1547514701-42782101795a?w=100&h=100&fit=crop';
+    if (name.includes('mango')) return 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=100&h=100&fit=crop';
+    if (name.includes('apple')) return 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=100&h=100&fit=crop';
+    if (name.includes('guava')) return 'https://images.unsplash.com/photo-1528825871115-3581a5387919?w=100&h=100&fit=crop';
+    if (name.includes('mix juice')) return 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=100&h=100&fit=crop';
+    
+    // Shakes
+    if (name.includes('vanilla') || name.includes('butter scotch') || name.includes('chocolate')) {
+      return 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=100&h=100&fit=crop';
+    }
+    if (name.includes('tutti fruit') || name.includes('kaju kishmish')) {
+      return 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=100&h=100&fit=crop';
+    }
+    if (name.includes('milk shake')) return 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100&h=100&fit=crop';
+    
+    // Breakfast
+    if (name.includes('sandwich')) return 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=100&h=100&fit=crop';
+    if (name.includes('toast')) return 'https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?w=100&h=100&fit=crop';
+    if (name.includes('omelette')) return 'https://images.unsplash.com/photo-1510693206972-df098062cb71?w=100&h=100&fit=crop';
+    if (name.includes('bread')) return 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&h=100&fit=crop';
+    
+    // Soups
+    if (name.includes('tomato soup')) return 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+    if (name.includes('soup') || name.includes('manchow')) return 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+    if (name.includes('sweet corn')) return 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=100&h=100&fit=crop';
+    
+    // Starters - Veg
+    if (name.includes('paneer') || name.includes('cheese')) return 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=100&h=100&fit=crop';
+    if (name.includes('mushroom')) return 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=100&h=100&fit=crop';
+    if (name.includes('pakora') || name.includes('cutlet')) return 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=100&h=100&fit=crop';
+    if (name.includes('chaat') || name.includes('peanut') || name.includes('papad')) return 'https://images.unsplash.com/photo-1567186937675-a5131e8f89ea?w=100&h=100&fit=crop';
+    if (name.includes('spring roll')) return 'https://images.unsplash.com/photo-1625938144747-48c5f5411e80?w=100&h=100&fit=crop';
+    if (name.includes('french fry') || name.includes('potato')) return 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=100&h=100&fit=crop';
+    if (name.includes('noodle') || name.includes('chowmin')) return 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=100&h=100&fit=crop';
+    if (name.includes('fried rice')) return 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=100&h=100&fit=crop';
+    
+    // Tandoori Veg
+    if (name.includes('tikka') || name.includes('kabab')) return 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=100&h=100&fit=crop';
+    if (name.includes('gobhi') || name.includes('aloo')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    
+    // Non-Veg Starters
+    if (name.includes('chicken') && (name.includes('lollipop') || name.includes('65') || name.includes('pakora') || name.includes('manchurian'))) {
+      return 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=100&h=100&fit=crop';
+    }
+    if (name.includes('chilly chicken') || name.includes('crispy honey chicken')) {
+      return 'https://images.unsplash.com/photo-1604908177453-7462950a33a9?w=100&h=100&fit=crop';
+    }
+    if (name.includes('egg') && !name.includes('curry')) {
+      return 'https://images.unsplash.com/photo-1587486913049-53fc8894cfc4?w=100&h=100&fit=crop';
+    }
+    
+    // Tandoori Non-Veg
+    if (name.includes('tandoori chicken') || name.includes('afghani chicken')) {
+      return 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=100&h=100&fit=crop';
+    }
+    if (name.includes('kabab') || name.includes('tikka')) {
+      return 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=100&h=100&fit=crop';
+    }
+    if (name.includes('platter')) return 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+    
+    // Salad & Raita
+    if (name.includes('salad')) return 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&h=100&fit=crop';
+    if (name.includes('raita') || name.includes('curd')) return 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=100&h=100&fit=crop';
+    
+    // Rice & Biryani
+    if (name.includes('biryani')) return 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=100&h=100&fit=crop';
+    if (name.includes('pulao')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    if (name.includes('rice')) return 'https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=100&h=100&fit=crop';
+    
+    // Breads
+    if (name.includes('naan') || name.includes('roti') || name.includes('prantha') || name.includes('parantha')) {
+      return 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=100&h=100&fit=crop';
+    }
+    if (name.includes('kulcha')) return 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=100&h=100&fit=crop';
+    if (name.includes('butter')) return 'https://images.unsplash.com/photo-1589985270822-4b7f671561f9?w=100&h=100&fit=crop';
+    
+    // Main Course - Veg
+    if (name.includes('dal')) return 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+    if (name.includes('paneer') && (name.includes('butter') || name.includes('tikka') || name.includes('shahi') || name.includes('lababdar'))) {
+      return 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=100&h=100&fit=crop';
+    }
+    if (name.includes('kaju')) return 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=100&h=100&fit=crop';
+    if (name.includes('kofta')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    if (name.includes('mutter') || name.includes('aloo') || name.includes('gobhi')) {
+      return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    }
+    if (name.includes('palak') || name.includes('methi')) return 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+    
+    // Non-Veg Main Course
+    if (name.includes('butter chicken') || name.includes('cream chicken')) {
+      return 'https://images.unsplash.com/photo-1604908177453-7462950a33a9?w=100&h=100&fit=crop';
+    }
+    if (name.includes('chicken') && (name.includes('curry') || name.includes('masala') || name.includes('kadhai') || name.includes('handi'))) {
+      return 'https://images.unsplash.com/photo-1604908177453-7462950a33a9?w=100&h=100&fit=crop';
+    }
+    if (name.includes('mutton')) return 'https://images.unsplash.com/photo-1604908177453-7462950a33a9?w=100&h=100&fit=crop';
+    if (name.includes('egg curry') || name.includes('egg')) return 'https://images.unsplash.com/photo-1587486913049-53fc8894cfc4?w=100&h=100&fit=crop';
+    
+    // Dessert
+    if (name.includes('ice cream')) return 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=100&h=100&fit=crop';
+    if (name.includes('gulab jamun')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    if (name.includes('gajrela')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    if (name.includes('fruit cream') || name.includes('tutty fruity')) {
+      return 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=100&h=100&fit=crop';
+    }
+    
+    // Additional Items
+    if (name.includes('burger')) return 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&h=100&fit=crop';
+    if (name.includes('pasta')) return 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=100&h=100&fit=crop';
+    if (name.includes('pizza')) return 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100&h=100&fit=crop';
+    if (name.includes('dosa')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    if (name.includes('dahi bhala')) return 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=100&h=100&fit=crop';
+    
+    // Default fallback image
+    return 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+  };
+
   const menuData = {
     beverages: {
       title: 'Beverages',
@@ -458,6 +590,30 @@ const Menu = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isDropdownOpen]);
 
+  // Render menu item with images
+  const renderMenuItem = (item) => {
+    const imageUrl = getFoodImage(item.name);
+    return (
+      <div key={item.name} className="menu-item">
+        <div className="menu-item-left">
+          <img 
+            src={imageUrl} 
+            alt={item.name} 
+            className="menu-item-image"
+            onError={(e) => {
+              e.target.src = 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=100&h=100&fit=crop';
+            }}
+          />
+          <div className="menu-item-info">
+            <span className="menu-item-name">{item.name}</span>
+            {item.desc && <span className="menu-item-desc">{item.desc}</span>}
+          </div>
+        </div>
+        <span className="menu-item-price">₹{item.price}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="menu-page">
       <div className="menu-hero">
@@ -533,26 +689,13 @@ const Menu = () => {
                     {data.note && <p className="menu-section-note">{data.note}</p>}
                   </div>
                   <div className="menu-items">
-                    {data.items.map((item, index) => (
-                      <div key={index} className="menu-item">
-                        <div className="menu-item-info">
-                          <span className="menu-item-name">{item.name}</span>
-                          {item.desc && <span className="menu-item-desc">{item.desc}</span>}
-                        </div>
-                        <span className="menu-item-price">₹{item.price}</span>
-                      </div>
-                    ))}
+                    {data.items.map((item) => renderMenuItem(item))}
                   </div>
                   {data.butter && (
                     <div className="menu-subsection">
                       <h3 className="menu-subsection-title">{data.butter.title}</h3>
                       <div className="menu-items">
-                        {data.butter.items.map((item, index) => (
-                          <div key={index} className="menu-item">
-                            <span className="menu-item-name">{item.name}</span>
-                            <span className="menu-item-price">₹{item.price}</span>
-                          </div>
-                        ))}
+                        {data.butter.items.map((item) => renderMenuItem(item))}
                       </div>
                     </div>
                   )}
@@ -577,26 +720,13 @@ const Menu = () => {
                     {data.note && <p className="menu-section-note">{data.note}</p>}
                   </div>
                   <div className="menu-items">
-                    {data.items.map((item, index) => (
-                      <div key={index} className="menu-item">
-                        <div className="menu-item-info">
-                          <span className="menu-item-name">{item.name}</span>
-                          {item.desc && <span className="menu-item-desc">{item.desc}</span>}
-                        </div>
-                        <span className="menu-item-price">₹{item.price}</span>
-                      </div>
-                    ))}
+                    {data.items.map((item) => renderMenuItem(item))}
                   </div>
                   {data.butter && (
                     <div className="menu-subsection">
                       <h3 className="menu-subsection-title">{data.butter.title}</h3>
                       <div className="menu-items">
-                        {data.butter.items.map((item, index) => (
-                          <div key={index} className="menu-item">
-                            <span className="menu-item-name">{item.name}</span>
-                            <span className="menu-item-price">₹{item.price}</span>
-                          </div>
-                        ))}
+                        {data.butter.items.map((item) => renderMenuItem(item))}
                       </div>
                     </div>
                   )}
