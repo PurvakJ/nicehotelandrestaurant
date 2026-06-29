@@ -287,7 +287,7 @@ const formatDiscount = (discount) => {
         <div className="hero-content">
           <div className="hero-text-container">
             <h1 className="hero-title">Nice Hotel</h1>
-            <h2 className="hero-subtitle">& Restaurant</h2>
+            <h2 className="hero-subtitle">And Restaurant</h2>
             <div className="hero-underline"></div>
             <p className="hero-description">
               {heroImages[currentSlide]?.title} — {heroImages[currentSlide]?.subtitle}
@@ -307,7 +307,7 @@ const formatDiscount = (discount) => {
       {/* ========================= */}
       <section className="features-section">
         <div className="container">
-          <h2 className="section-title">Welcome to Nice Hotel</h2>
+          <h2 className="section-title">Welcome to Nice Hotel And Restaurant</h2>
           <p className="section-subtitle">
             Where luxury meets comfort — Experience world-class hospitality
           </p>
