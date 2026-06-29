@@ -58,7 +58,7 @@ export default function Navbar() {
             <span className="brand-icon">
               <img src="https://i.postimg.cc/mhxQ3hGt/53f3a174-6fcb-4bf4-bea3-7f79881b9814.png" alt="Hotel Logo" className="brand-logo" />
             </span>
-            <span className="brand-name">Nice Hotel & Restaurant<span className="brand-highlight"></span></span>
+            <span className="brand-name">Nice Hotel And Restaurant<span className="brand-highlight"></span></span>
           </Link>
           <button 
             className={`mobile-toggle ${isMobile ? 'active' : ''}`}

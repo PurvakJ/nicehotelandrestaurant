@@ -22,7 +22,7 @@ function Footer() {
         <div className="footer-section brand-section">
           <div className="footer-brand">
             <span className="footer-brand-icon">🏨</span>
-            <h3>Nice Hotel &<span className="brand-highlight">Restaurant</span></h3>
+            <h3>Nice Hotel And<span className="brand-highlight">Restaurant</span></h3>
           </div>
           <p className="footer-brand-desc">
             Experience luxury and comfort with our premium hospitality services.
