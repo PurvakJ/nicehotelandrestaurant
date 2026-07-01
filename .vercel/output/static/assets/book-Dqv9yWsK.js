@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-CZcjcDnw.js";import{A as t}from"./index-DJ7q2ecV.js";var n=e(),r=()=>(0,n.jsx)(`div`,{className:`container-luxe py-32 text-center`,children:(0,n.jsxs)(`p`,{className:`text-muted-foreground`,children:[`We couldn't load availability. Please call us at `,t.phone,`.`]})});export{r as errorComponent};

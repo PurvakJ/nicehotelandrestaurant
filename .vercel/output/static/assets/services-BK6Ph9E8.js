@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-CZcjcDnw.js";var t=e(),n=()=>(0,t.jsxs)(`div`,{className:`container-luxe py-32 text-center`,children:[(0,t.jsx)(`h1`,{className:`font-display text-3xl text-charcoal`,children:`Services are loading slowly`}),(0,t.jsx)(`p`,{className:`mt-3 text-muted-foreground`,children:`Please refresh the page.`})]});export{n as errorComponent};
